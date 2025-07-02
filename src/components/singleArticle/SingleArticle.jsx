@@ -1,27 +1,27 @@
-"use client"
+"use client";
 import useSingleArticleHook from "@/hooks/useSingleArticleHook";
 import Loading from "../shared/loading/Loading";
-const SingleArticle = ({ articleID,lang }) => {
+const SingleArticle = ({ articleID, lang }) => {
+  const isArabic = lang == "ar";
   const [singleArticleData, isLoading, isError, error] =
     useSingleArticleHook(articleID);
   if (isLoading) return <Loading />;
   if (isError) return <div>error:-{error}</div>;
-  const image =
-    "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=";
+  const desc = (
+    isArabic ? singleArticleData?.desc_ar : singleArticleData?.desc_en
+  )
+    ?.trim()
+    .split("\n\n");
   return (
-    <section
-      className="container-lg py-2"
-      style={{ maxWidth: "var(--section-max-width)" }}
-      dir={lang == "ar" ? "rtl" : "ltr"}
-    >
+    <>
       {singleArticleData && (
         <article className="card border-0">
           <div className="image-container position-relative">
             <img
-              src={image}
+              src={singleArticleData?.art_img}
               className="card-img-top"
               alt={
-                lang == "ar"
+                isArabic
                   ? singleArticleData?.title_ar
                   : singleArticleData?.title_en
               }
@@ -35,39 +35,42 @@ const SingleArticle = ({ articleID,lang }) => {
                 color: "var(--white-color)",
               }}
             >
-              {lang == "ar"
+              {isArabic
                 ? singleArticleData?.title_ar
                 : singleArticleData?.title_en}
             </h2>
           </div>
           <div className="card-body">
-            <p className="card-text">
-              {lang == "ar"
-                ? singleArticleData?.desc_ar
-                : singleArticleData?.desc_en}
-            </p>
-            {lang == "en" && singleArticleData?.link_en && (
-              <a
-                href={singleArticleData?.link_en}
-                className="btn btn-outline-primary d-block"
-                target="_blank"
-              >
-                {singleArticleData?.link_en}
-              </a>
-            )}
-            {lang == "ar" && singleArticleData?.link_ar && (
-              <a
-                href={singleArticleData?.link_ar}
-                className="btn btn-outline-primary d-block"
-                target="_blank"
-              >
-                {singleArticleData?.link_ar}
-              </a>
-            )}
+            <h3>
+              {isArabic
+                ? singleArticleData?.top_title_ar
+                : singleArticleData?.top_title_en}
+            </h3>
+            {desc?.map((text, idx) => (
+              <p key={idx}>{text}</p>
+            ))}
           </div>
+          {singleArticleData?.media_img && (
+            <img
+              src={singleArticleData?.media_img}
+              alt={
+                isArabic
+                  ? singleArticleData?.title_ar
+                  : singleArticleData?.title_en
+              }
+              loading="lazy"
+              className="mb-3"
+            />
+          )}
+          {singleArticleData?.iframe && (
+            <iframe
+              src={singleArticleData?.iframe}
+              style={{ width: "100%", height: "550px" }}
+            ></iframe>
+          )}
         </article>
       )}
-    </section>
+    </>
   );
 };
 export default SingleArticle;

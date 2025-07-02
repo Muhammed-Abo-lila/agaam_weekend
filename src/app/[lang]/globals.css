@@ -16,27 +16,29 @@
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif;
 }
-.inputs-container {
-  position: relative;
+.form-control:focus {
+  outline: none;
+  border: 1px solid var(--identity-color);
+  box-shadow: none;
 }
-.inputs-container:after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  bottom: 20px;
-  width: 1px;
-  left: 50%;
-  background-color: gray;
-}
-article.card .card-img-top {
+.card .card-img-top {
   width: 100%;
   aspect-ratio: 0.9/0.4;
   object-fit: cover;
-  min-height: 300px;
 }
 @media screen and (max-width: 768px) {
-  article.card .card-img-top {
+  .card .card-img-top {
     aspect-ratio: 1/0.7;
+  }
+}
+@media screen and (max-width: 575px) {
+  .card .card-img-top {
+    aspect-ratio: 1.4/0.6;
+  }
+}
+@media screen and (max-width: 440px) {
+  .card .card-img-top {
+    aspect-ratio: 1.7/1;
   }
 }
 /* start loading style */
@@ -129,4 +131,25 @@ article.card .card-img-top {
     flex-wrap: nowrap;
     font-size: 13px;
   }
+}
+/* custom classes */
+.cursor-pointer {
+  cursor: pointer;
+}
+.active-tab {
+  border: 1px solid var(--identity-color);
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: 0px;
+  position: relative;
+  background-color: var(--identity-color);
+  color: var(--white-color);
+}
+.active-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: -1px;
+  right: -1px;
+  height: 2px;
+  background-color: #fff;
 }

@@ -1,14 +1,14 @@
 import SingleArticle from "@/components/singleArticle/SingleArticle";
 import { fetchToGetData } from "@/helpers/fetcher";
+import { IoMoon, IoSunnyOutline } from "react-icons/io5";
+import { getDictionary } from "../../dictionaries";
 export async function generateMetadata({ params }) {
   const { articleID, lang } = await params;
   const articleData = await fetchToGetData("articals", articleID);
   const title = lang === "en" ? articleData.title_en : articleData.title_ar;
   const description = lang === "en" ? articleData.desc_en : articleData.desc_ar;
-  const image =
-    "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=";
+  const image = articleData?.art_img;
   const url = `${process.env.NEXT_PUBLIC_DOMAIN_URL}/${lang}/artical/${articleID}`;
-
   return {
     title: title,
     description: description,
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
       title: title,
       description: description,
       url: url,
-      siteName: "frada.com.sa",
+      siteName: "https://agaam-weekend.vercel.app",
       images: [
         {
           url: image,
@@ -45,14 +45,39 @@ export async function generateMetadata({ params }) {
       "og:image:height": "630",
       "og:url": url,
       "og:type": "website",
-      "og:site_name": "frada.com.sa",
+      "og:site_name": "https://agaam-weekend.vercel.app",
     },
   };
 }
-
 const SingleArtical = async ({ params }) => {
   const { articleID, lang } = await params;
-  return <SingleArticle articleID={articleID} lang={lang} />;
+  const t = await getDictionary(lang);
+  return (
+    <section
+      className="container-lg py-2"
+      style={{ maxWidth: "var(--section-max-width)" }}
+      dir={lang == "ar" ? "rtl" : "ltr"}
+    >
+      <div
+        className="header d-flex justify-content-between align-items-center  border-1 border-black mb-3 pb-2"
+        style={{ borderBottomStyle: "dotted" }}
+      >
+        <h1 className="title d-flex gap-2 fs-4">
+          <span style={{ color: "var(--identity-color)" }}>{t.argaam}</span>
+          <span>{t.weekend}</span>
+        </h1>
+        {/* <div className="d-flex gap-3">
+          <span>{lang == "ar" ? "english" : "العربية"}</span>
+          <span>
+            <IoMoon />
+            <IoSunnyOutline />
+          </span>
+        </div> */}
+      </div>
+
+      <SingleArticle articleID={articleID} lang={lang} />
+    </section>
+  );
 };
 
 export default SingleArtical;

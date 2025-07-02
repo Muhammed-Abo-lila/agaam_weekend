@@ -1,9 +1,9 @@
-const DashboardInput = ({ label, fn, name, value, type }) => {
+const DashboardInput = ({ placeholder, fn, name, value, type ,classes }) => {
   return (
-    <div className="mb-3">
-      <label className="form-label text-capitalize">{label}</label>
+    <div className={`mb-3 ${classes}`}>
       {name.includes("desc") ? (
         <textarea
+          placeholder={placeholder}
           className="form-control"
           rows="4"
           style={{ minHeight: "150px", maxHeight: "150px" }}
@@ -15,6 +15,7 @@ const DashboardInput = ({ label, fn, name, value, type }) => {
         ></textarea>
       ) : (
         <input
+          placeholder={placeholder}
           type={type}
           className="form-control"
           accept={type == "file" ? "image/*" : ""}

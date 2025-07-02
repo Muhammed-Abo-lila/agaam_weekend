@@ -1,5 +1,5 @@
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import ReactQueryContext from "@/context/ReactQueryContext";
 

@@ -1,14 +1,14 @@
-.button{
-    min-width: 50px;
-    background-color: var(--identity-color);
-    color: var(--white-color);
-    border: 1px solid var(--identity-color);
-    font-size: 10px;
-    transition: all .3s ease-in-out;
+.button {
+  min-width: 50px;
+  background-color: var(--identity-color);
+  color: var(--white-color);
+  border: 1px solid var(--identity-color);
+  transition: all 0.3s ease-in-out;
+  font-size: 13px;
+  padding: 5px 3px;
 }
-.button:hover{
-    background-color: var(--white-color);
-    color: var(--identity-color);
-    border: 1px solid var(--identity-color);
-    font-size: 10px;
+.button:hover {
+  background-color: var(--white-color);
+  color: var(--identity-color);
+  border: 1px solid var(--identity-color);
 }
