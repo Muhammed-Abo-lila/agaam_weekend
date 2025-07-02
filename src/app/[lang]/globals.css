@@ -1,0 +1,132 @@
+:root {
+  --font-size-base: 1rem;
+  --identity-color: #ee7b0b;
+  --background-opacity: rgba(0, 0, 0, 0.7);
+  --white-color: #fff;
+  --black-color: #000;
+  --section-max-width: 800px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+body {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+.inputs-container {
+  position: relative;
+}
+.inputs-container:after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  width: 1px;
+  left: 50%;
+  background-color: gray;
+}
+article.card .card-img-top {
+  width: 100%;
+  aspect-ratio: 0.9/0.4;
+  object-fit: cover;
+  min-height: 300px;
+}
+@media screen and (max-width: 768px) {
+  article.card .card-img-top {
+    aspect-ratio: 1/0.7;
+  }
+}
+/* start loading style */
+.loading-container {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.loading-container .loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #fff #fff transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loading-container .loader::after,
+.loading-container .loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #ff3d00 #ff3d00;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+.loading-container .loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #fff #fff transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+/* end loading style */
+
+/* Start navbar style */
+.nav {
+  top: -34px;
+}
+.nav .nav-item .nav-link {
+  border: none;
+  background-color: #f7f7f7;
+  color: #000;
+}
+.nav .nav-item .nav-link.active {
+  border: 1px solid #f2f2f2;
+  color: var(--white-color);
+  border: none;
+  background: var(--identity-color);
+  border-bottom: none;
+  border-radius: 4px 4px 0px 0px;
+}
+@media screen and (max-width: 576px) {
+  .nav {
+    flex-wrap: nowrap;
+    font-size: 13px;
+  }
+}
