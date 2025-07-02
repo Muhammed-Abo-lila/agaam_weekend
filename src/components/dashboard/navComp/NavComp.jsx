@@ -1,4 +1,4 @@
-const NavComp = ({ articlesData }) => {
+const NavComp = ({ articlesData, t}) => {
   return (
     <ul
       className="nav nav-tabs position-absolute d-flex start-0"
@@ -16,7 +16,7 @@ const NavComp = ({ articlesData }) => {
           aria-controls="add"
           aria-selected="true"
         >
-          {t("add")}
+          {t.add}
         </button>
       </li>
       {articlesData && articlesData?.length > 0 && (
@@ -31,7 +31,7 @@ const NavComp = ({ articlesData }) => {
             aria-controls="edit"
             aria-selected="false"
           >
-            {t("edit")}
+            {t.edit}
           </button>
         </li>
       )}

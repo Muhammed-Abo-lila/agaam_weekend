@@ -5,7 +5,7 @@ import { fetchToDeleteData } from "../../../helpers/fetcher";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import EditLayout from "../editLayout/EditLayout";
 import Link from "next/link";
-const ArticleCard = ({ article, type ,t,lang}) => {
+const ArticleCard = ({ article,t,lang,type }) => {
   const queryClient = useQueryClient();
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showEditPopup, setShowEditPopup] = useState(false);

@@ -3,8 +3,6 @@ import { fetchToGetData } from "@/helpers/fetcher";
 export async function generateMetadata({ params }) {
   const { articleID, lang } = await params;
   const articleData = await fetchToGetData("articals", articleID);
-  console.log("articleData====================>", articleData);
-
   const title = lang === "en" ? articleData.title_en : articleData.title_ar;
   const description = lang === "en" ? articleData.desc_en : articleData.desc_ar;
   const image =
