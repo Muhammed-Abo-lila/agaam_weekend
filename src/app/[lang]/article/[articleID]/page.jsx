@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
     isArabic ? articleData.meta_data_title_ar : articleData.meta_data_title_en;
   const description =
     isArabic ? articleData.meta_data_desc_ar : articleData.meta_data_desc_en;
-  const image = articleData?.meta_data_image;
+  const image = articleData?.meta_data_image_url;
   const url = `${process.env.NEXT_PUBLIC_DOMAIN_URL}/${lang}/artical/${articleID}`;
   return {
     title: title,
