@@ -1,7 +1,7 @@
-const DashboardInput = ({ placeholder, fn, name, value, type ,classes }) => {
+const DashboardInput = ({ placeholder, fn, name, value, inputDir,type, classes }) => {
   return (
     <div className={`mb-3 ${classes}`}>
-      {name.includes("desc") ? (
+      {/* {name.includes("desc") ? (
         <textarea
           placeholder={placeholder}
           className="form-control"
@@ -25,7 +25,16 @@ const DashboardInput = ({ placeholder, fn, name, value, type ,classes }) => {
             fn(name, type == "file" ? e.target.files[0] : e.target.value)
           }
         />
-      )}
+      )} */}
+      <input
+      dir={inputDir||"ltr"}
+        placeholder={placeholder}
+        type={type}
+        className="form-control"
+        value={value}
+        required
+        onChange={(e) => fn(name, e.target.value)}
+      />
     </div>
   );
 };

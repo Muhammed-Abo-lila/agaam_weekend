@@ -4,7 +4,7 @@ import Loading from "@/components/shared/loading/Loading";
 import ArticleCard from "../shared/articleCard/ArticleCard";
 import EmptyContent from "../shared/emptyContent/EmptyContent";
 const HomeComp = ({ t, lang }) => {
-  const [articlesData, isLoading, isError, error] = useHomeHook();
+  const [articlesData, isLoading, isError, error] = useHomeHook();  
   if (isLoading) return <Loading />;
   if (isError) return <div>error:-{error}</div>;
   return (

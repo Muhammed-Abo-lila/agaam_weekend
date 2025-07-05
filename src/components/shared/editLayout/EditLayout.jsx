@@ -5,30 +5,35 @@ import Button from "../button/Button";
 import useSingleArticleHook from "../../../hooks/useSingleArticleHook";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchToUpdateData } from "../../../helpers/fetcher";
-const EditLayout = ({ articleID, backFn }) => {
+import TextEditor from "@/components/TextEditor";
+const EditLayout = ({ articleID, t, backFn }) => {
   const queryClient = useQueryClient();
   const [data, setData] = useState({
-    image_ar: "",
-    title_ar: "",
-    desc_ar: "",
-    link_ar: "",
-    image_en: "",
-    title_en: "",
-    desc_en: "",
-    link_en: "",
+    meta_data_title_en: "",
+    meta_data_title_ar: "",
+    meta_data_desc_en: "",
+    meta_data_desc_ar: "",
+    meta_data_keywords_en: "",
+    meta_data_keywords_ar: "",
+    article_data_en: "",
+    article_data_ar: "",
+    meta_data_image_url: "",
+    meta_data_url: "",
   });
   // get single article
   const [singleArticleData] = useSingleArticleHook(articleID);
   useEffect(() => {
     setData({
-      image_ar: "",
-      title_ar: singleArticleData?.title_ar || "",
-      desc_ar: singleArticleData?.desc_ar || "",
-      link_ar: singleArticleData?.link_ar || "",
-      image_en: "",
-      title_en: singleArticleData?.title_en || "",
-      desc_en: singleArticleData?.desc_en || "",
-      link_en: singleArticleData?.link_en || "",
+      meta_data_title_en: singleArticleData?.meta_data_title_en,
+      meta_data_title_ar: singleArticleData?.meta_data_title_ar,
+      meta_data_desc_en: singleArticleData?.meta_data_desc_en,
+      meta_data_desc_ar: singleArticleData?.meta_data_desc_ar,
+      meta_data_keywords_en: singleArticleData?.meta_data_keywords_en,
+      meta_data_keywords_ar: singleArticleData?.meta_data_keywords_ar,
+      article_data_en: singleArticleData?.article_data_en,
+      article_data_ar: singleArticleData?.article_data_ar,
+      meta_data_image_url: singleArticleData?.meta_data_image_url,
+      meta_data_url: singleArticleData?.meta_data_url,
     });
   }, [singleArticleData]);
   // collect data onChange it
@@ -44,12 +49,16 @@ const EditLayout = ({ articleID, backFn }) => {
     mutationFn: (payload) => {
       const formData = {
         id: articleID,
-        title_ar: payload.title_ar,
-        desc_ar: payload.desc_ar,
-        link_ar: payload.link_ar,
-        title_en: payload.title_en,
-        desc_en: payload.desc_en,
-        link_en: payload.link_en,
+        meta_data_title_en: payload?.meta_data_title_en,
+        meta_data_title_ar: payload?.meta_data_title_ar,
+        meta_data_desc_en: payload?.meta_data_desc_en,
+        meta_data_desc_ar: payload?.meta_data_desc_ar,
+        meta_data_keywords_en: payload?.meta_data_keywords_en,
+        meta_data_keywords_ar: payload?.meta_data_keywords_ar,
+        article_data_en: payload?.article_data_en,
+        article_data_ar: payload?.article_data_ar,
+        meta_data_image_url: payload?.meta_data_image_url,
+        meta_data_url: payload?.meta_data_url,
       };
       return fetchToUpdateData("articals", formData, articleID);
     },
@@ -71,73 +80,94 @@ const EditLayout = ({ articleID, backFn }) => {
         onSubmit={handleSubmit}
       >
         <div className="inputs-container d-flex justify-content-between gap-3">
-          <div className="ar-setion w-50" dir="rtl">
-            <h2 className="fs-6 text-center fw-medium mb-3">
-              محتوي المقال العربي
-            </h2>
-
-            {/* <DashboardInput
-              label="إختر صوره:"
-              fn={collectData}
-              name="image_ar"
-              type="file"
-            /> */}
-            <DashboardInput
-              label="أدخل عنوان:"
-              fn={collectData}
-              name="title_ar"
-              value={data?.title_ar}
-              type="text"
-            />
-            <DashboardInput
-              label="أدخل وصف:"
-              fn={collectData}
-              name="desc_ar"
-              value={data?.desc_ar}
-            />
-            <DashboardInput
-              label=" أدخل رابط:"
-              fn={collectData}
-              name="link_ar"
-              value={data?.link_ar}
-              type="url"
-            />
-          </div>
-          <div className="en-section w-50">
-            <h2 className="fs-6 text-center fw-medium mb-3 text-capitalize">
-              english article content
-            </h2>
-            {/* <DashboardInput
-              label=" Choose Image:"
-              fn={collectData}
-              name="image_en"
-              type="file"
-            /> */}
-            <DashboardInput
-              label="Enter Title:"
-              fn={collectData}
-              name="title_en"
-              value={data?.title_en}
-              type="text"
-            />
-            <DashboardInput
-              label="Enter Description:"
-              fn={collectData}
-              name="desc_en"
-              value={data?.desc_en}
-            />
-            <DashboardInput
-              label="Enter URL:"
-              fn={collectData}
-              name="link_en"
-              value={data?.link_en}
-              type="url"
-            />
-          </div>
+          <DashboardInput
+            placeholder="meta data title en"
+            fn={collectData}
+            name="meta_data_title_en"
+            value={data?.meta_data_title_en}
+            inputDir="ltr"
+            type="text"
+            classes="col-6"
+          />
+          <DashboardInput
+            placeholder="عنوان الميتا تاج بالعربي"
+            fn={collectData}
+            name="meta_data_title_ar"
+            value={data?.meta_data_title_ar}
+            inputDir="rtl"
+            type="text"
+            classes="col-6"
+          />
+          <DashboardInput
+            placeholder="meta data desc en"
+            fn={collectData}
+            name="meta_data_desc_en"
+            value={data?.meta_data_desc_en}
+            inputDir="ltr"
+            type="text"
+            classes="col-6"
+          />
+          <DashboardInput
+            placeholder="وصف الميتا تاج بالعربي"
+            fn={collectData}
+            name="meta_data_desc_ar"
+            value={data?.meta_data_desc_ar}
+            inputDir="rtl"
+            type="text"
+            classes="col-6"
+          />
+          <DashboardInput
+            placeholder="meta data keywords en"
+            fn={collectData}
+            name="meta_data_keywords_en"
+            value={data?.meta_data_keywords_en}
+            inputDir="ltr"
+            type="text"
+            classes="col-6"
+          />
+          <DashboardInput
+            placeholder="الكلمات المفتاحية للميتا تاج بالعربي"
+            fn={collectData}
+            name="meta_data_keywords_ar"
+            value={data?.meta_data_keywords_ar}
+            inputDir="rtl"
+            type="text"
+            classes="col-6"
+          />
+          <DashboardInput
+            placeholder="meta data image url"
+            fn={collectData}
+            name="meta_data_image_url"
+            value={data?.meta_data_image_url}
+            type="url"
+            classes="col-6"
+          />
+          <DashboardInput
+            placeholder="meta data url"
+            fn={collectData}
+            name="meta_data_url"
+            value={data?.meta_data_url}
+            type="text"
+            classes="col-6"
+          />
+          <TextEditor
+            fn={collectData}
+            value={data?.article_data_en}
+            name="article_data_en"
+            type="en"
+            placeholder="Write your content here..."
+          />
+          <TextEditor
+            fn={collectData}
+            value={data?.article_data_ar}
+            name="article_data_ar"
+            type="ar"
+            placeholder="أدخل محتوي المقال بالعربي..."
+          />
         </div>
         <div className="d-flex justify-content-center align-content-center gap-5">
-          <Button text={t("back")} fn={backFn} />
-          <Button text={t("submit")} type="submit" />
+          <Button text={t.back} fn={backFn} />
+          <Button text={t.submit} type="submit" />
         </div>
       </form>
     </LayoutContainer>

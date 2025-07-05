@@ -5,9 +5,10 @@
   "add": "add",
   "edit": "edit",
   "delete": "delete",
-  "delete article": "delete article",
+  "delete_article": "delete article",
   "back": "back",
   "ok": "ok",
   "argaam": "argaam",
-  "weekend": "weekend"
+  "weekend": "weekend",
+  "preview": "preview"
 }

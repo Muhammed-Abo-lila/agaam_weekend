@@ -27,8 +27,10 @@ const ArticleCard = ({ article, t, lang, type }) => {
         <div className="row g-0 flex-column flex-lg-row h-100">
           <div className="col col-lg-4">
             <img
-              src={article?.art_img}
-              alt={isArabic ? article?.title_ar : article?.title_en}
+              src={article?.meta_data_image_url}
+              alt={
+                isArabic ? article?.meta_data_title_ar : article?.meta_data_title_en
+              }
               className="card-img-top h-100"
             />
           </div>
@@ -39,7 +41,9 @@ const ArticleCard = ({ article, t, lang, type }) => {
                   className="card-title text-capitalize"
                   style={{ fontSize: "calc(var(--font-size-base) + 0.1rem)" }}
                 >
-                  {isArabic ? article?.title_ar : article?.title_en}
+                  {isArabic
+                    ? article?.meta_data_title_ar
+                    : article?.meta_data_title_en}
                 </h5>
                 <p
                   className="card-text mt-2"
@@ -48,22 +52,22 @@ const ArticleCard = ({ article, t, lang, type }) => {
                     minHeight: "50%",
                   }}
                 >
-                  {(isArabic ? article?.desc_ar : article?.desc_en).slice(
-                    0,
-                    160
-                  )}
+                  {(isArabic
+                    ? article?.meta_data_desc_ar
+                    : article?.meta_data_desc_en
+                  ).slice(0, 160)}
                 </p>
               </div>
               <div
                 className="artical-footer d-flex justify-content-between align-items-center w-100 mt-3"
                 style={{ fontSize: "calc(var(--font-size-base) - 0.2rem)" }}
               >
-                {lang == "en" && article?.title_en && article?.desc_ar && (
-                  <span>متاح بالعربيه</span>
-                )}
-                {isArabic && article?.title_en && article?.desc_en && (
-                  <span>available in english</span>
-                )}
+                {!isArabic &&
+                  article?.meta_data_title_en &&
+                  article?.meta_data_title_en && <span>متاح بالعربيه</span>}
+                {isArabic &&
+                  article?.meta_data_title_ar &&
+                  article?.meta_data_title_ar && <span>available in english</span>}
                 {type == "dashboard" && (
                   <div className="d-flex justify-content-center align-items-center gap-3 pointer">
                     <Button text={t.edit} fn={() => setShowEditPopup(true)} />
@@ -86,7 +90,8 @@ const ArticleCard = ({ article, t, lang, type }) => {
       </div>
       {showDeletePopup && (
         <DeleteLayout
-          title={isArabic ? article?.title_ar : article?.title_en}
+          title={isArabic ? article?.meta_data_title_ar : article?.meta_data_title_en}
+          t={t}
           deleteFn={deleteArticle}
           backFn={() => setShowDeletePopup(false)}
         />
@@ -94,6 +99,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
       {showEditPopup && (
         <EditLayout
           articleID={article?.id}
+          t={t}
           backFn={() => setShowEditPopup(false)}
         />
       )}

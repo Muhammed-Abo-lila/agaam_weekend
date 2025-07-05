@@ -4,17 +4,20 @@ import { IoMoon, IoSunnyOutline } from "react-icons/io5";
 import { getDictionary } from "../../dictionaries";
 export async function generateMetadata({ params }) {
   const { articleID, lang } = await params;
+  const isArabic=lang==="ar";
   const articleData = await fetchToGetData("articals", articleID);
-  const title = lang === "en" ? articleData.title_en : articleData.title_ar;
-  const description = lang === "en" ? articleData.desc_en : articleData.desc_ar;
-  const image = articleData?.art_img;
+  const title =
+    isArabic ? articleData.meta_data_title_ar : articleData.meta_data_title_en;
+  const description =
+    isArabic ? articleData.meta_data_desc_ar : articleData.meta_data_desc_en;
+  const image = articleData?.meta_data_image;
   const url = `${process.env.NEXT_PUBLIC_DOMAIN_URL}/${lang}/artical/${articleID}`;
   return {
     title: title,
     description: description,
     other: {
-      lang: "ar",
-      dir: "rtl",
+      lang: isArabic?"ar":"en",
+      dir: isArabic?"ltr":"rtl"
     },
     openGraph: {
       title: title,
@@ -49,6 +52,7 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+
 const SingleArtical = async ({ params }) => {
   const { articleID, lang } = await params;
   const t = await getDictionary(lang);

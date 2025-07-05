@@ -5,9 +5,10 @@
   "add": "إضافه",
   "edit": "تعديل",
   "delete": "حذف",
-  "delete article": "حذف العنوان",
+  "delete_article": "حذف العنوان",
   "back": "رجوع",
   "ok": "تأكيد",
   "argaam":"أرقام",
-  "weekend":"ويك اند"
+  "weekend":"ويك اند",
+  "preview":"إستعراض"
 }

@@ -7,6 +7,7 @@ import useHomeHook from "@/hooks/useHomeHook";
 import Loading from "../shared/loading/Loading";
 import Button from "../shared/button/Button";
 import { useState } from "react";
+import TextEditor from "../TextEditor";
 const DashboardComp = ({ t, lang }) => {
   const [activeTab, setActiveTab] = useState("add");
   const [data, collectData, handleSubmit, mutation] = useDashboardHook();
@@ -27,89 +28,96 @@ const DashboardComp = ({ t, lang }) => {
         {activeTab == "add" && (
           <form className="row" onSubmit={handleSubmit}>
             <DashboardInput
-              placeholder="article img"
+              placeholder="meta data title en"
               fn={collectData}
-              name="art_img"
-              value={data?.art_img}
+              name="meta_data_title_en"
+              value={data?.meta_data_title_en}
+              inputDir="ltr"
+              type="text"
+              classes="col-6"
+            />
+            <DashboardInput
+              placeholder="عنوان الميتا تاج بالعربي"
+              fn={collectData}
+              name="meta_data_title_ar"
+              value={data?.meta_data_title_ar}
+              inputDir="rtl"
+              type="text"
+              classes="col-6"
+            />
+            <DashboardInput
+              placeholder="meta data desc en"
+              fn={collectData}
+              name="meta_data_desc_en"
+              value={data?.meta_data_desc_en}
+              inputDir="ltr"
+              type="text"
+              classes="col-6"
+            />
+            <DashboardInput
+              placeholder="وصف الميتا تاج بالعربي"
+              fn={collectData}
+              name="meta_data_desc_ar"
+              value={data?.meta_data_desc_ar}
+              inputDir="rtl"
+              type="text"
+              classes="col-6"
+            />
+            <DashboardInput
+              placeholder="meta data keywords en"
+              fn={collectData}
+              name="meta_data_keywords_en"
+              value={data?.meta_data_keywords_en}
+              inputDir="ltr"
+              type="text"
+              classes="col-6"
+            />
+            <DashboardInput
+              placeholder="الكلمات المفتاحية للميتا تاج بالعربي"
+              fn={collectData}
+              name="meta_data_keywords_ar"
+              value={data?.meta_data_keywords_ar}
+              inputDir="rtl"
+              type="text"
+              classes="col-6"
+            />
+            <DashboardInput
+              placeholder="meta data image url"
+              fn={collectData}
+              name="meta_data_image_url"
+              value={data?.meta_data_image_url}
               type="url"
               classes="col-6"
             />
             <DashboardInput
-              placeholder="article num"
+              placeholder="meta data url"
               fn={collectData}
-              name="art_num"
-              value={data?.art_num}
-              type="number"
-              classes="col-6"
-            />
-            <DashboardInput
-              placeholder="title en"
-              fn={collectData}
-              name="title_en"
-              value={data?.title_en}
+              name="meta_data_url"
+              value={data?.meta_data_url}
               type="text"
               classes="col-6"
             />
-            <DashboardInput
-              placeholder="title ar"
+            <TextEditor
               fn={collectData}
-              name="title_ar"
-              value={data?.title_ar}
-              type="text"
-              classes="col-6"
+              value={data?.article_data_en}
+              name="article_data_en"
+              type="en"
+              placeholder="Write your content here..."
             />
-            <DashboardInput
-              placeholder="top title en"
+            <TextEditor
               fn={collectData}
-              name="top_title_en"
-              value={data?.top_title_en}
-              type="text"
-              classes="col-6"
-            />
-            <DashboardInput
-              placeholder="top title ar"
-              fn={collectData}
-              name="top_title_ar"
-              value={data?.top_title_ar}
-              type="text"
-              classes="col-6"
-            />
-            <DashboardInput
-              placeholder="desc en"
-              fn={collectData}
-              name="desc_en"
-              value={data?.desc_en}
-              type="text"
-              classes="col-6"
+              value={data?.article_data_ar}
+              name="article_data_ar"
+              type="ar"
+              placeholder="أدخل محتوي المقال بالعربي..."
             />
 
-            <DashboardInput
-              placeholder="desc ar"
-              fn={collectData}
-              name="desc_ar"
-              value={data?.desc_ar}
-              type="text"
-              classes="col-6"
-            />
-
-            <DashboardInput
-              placeholder="media img"
-              fn={collectData}
-              name="media_img"
-              value={data?.media_img}
-              type="url"
-              classes="col-12"
-            />
-            <DashboardInput
-              placeholder="iframe"
-              fn={collectData}
-              name="iframe"
-              value={data?.iframe}
-              type="url"
-              classes="col-12"
-            />
-
-            <Button text={t.submit} type="submit" classes=""/>
+            <div className="col-6">
+              <Button text={t.submit} type="submit" />
+            </div>
+            <div className="col-6">
+              <Button text={t.preview} />
+            </div>
           </form>
         )}
 
