@@ -75,11 +75,10 @@ const EditLayout = ({ articleID, t, backFn }) => {
   return (
     <LayoutContainer>
       <form
-        className="p-4"
-        style={{ backgroundColor: "var(--white-color)" }}
+        className="p-4  row"
+        style={{ backgroundColor: "var(--white-color)" ,maxWidth:"1300px",direction:"ltr"}}
         onSubmit={handleSubmit}
       >
-        <div className="inputs-container d-flex justify-content-between gap-3">
           <DashboardInput
             placeholder="meta data title en"
             fn={collectData}
@@ -164,10 +163,9 @@ const EditLayout = ({ articleID, t, backFn }) => {
             type="ar"
             placeholder="أدخل محتوي المقال بالعربي..."
           />
-        </div>
         <div className="d-flex justify-content-center align-content-center gap-5">
-          <Button text={t.back} fn={backFn} />
           <Button text={t.submit} type="submit" />
+          <Button text={t.back} fn={backFn} />
         </div>
       </form>
     </LayoutContainer>

@@ -112,12 +112,12 @@ const DashboardComp = ({ t, lang }) => {
               placeholder="أدخل محتوي المقال بالعربي..."
             />
 
-            <div className="col-6">
+            {/* <div className="col-6"> */}
               <Button text={t.submit} type="submit" />
-            </div>
-            <div className="col-6">
+            {/* </div> */}
+            {/* <div className="col-6">
               <Button text={t.preview} />
-            </div>
+            </div> */}
           </form>
         )}
 
