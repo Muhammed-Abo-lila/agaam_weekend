@@ -11,7 +11,7 @@ const SingleArticle = ({ articleID, lang }) => {
     <>
       {singleArticleData && (
         <article
-          className="card border-0"
+          className="article-card border-0"
           dangerouslySetInnerHTML={{
             __html: isArabic
               ? singleArticleData?.article_data_ar
