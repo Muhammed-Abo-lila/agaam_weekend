@@ -11,7 +11,7 @@ const HomeComp = ({ t, lang }) => {
     <section className="arricles" dir={lang == "ar" ? "rtl" : "ltr"}>
       <div
         className="container py-3 shadow-sm mt-3"
-        style={{ minHeight: "90vh", maxWidth: "1100px" }}
+        style={{ minHeight: "90vh", maxWidth: "var(--section-max-width)" }}
       >
         {articlesData && articlesData?.length > 0 ? (
           <div className="row g-2">

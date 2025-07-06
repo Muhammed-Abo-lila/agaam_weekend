@@ -4,18 +4,19 @@
   --background-opacity: rgba(0, 0, 0, 0.7);
   --white-color: #fff;
   --black-color: #000;
-  --section-max-width: 800px;
+  --section-max-width: 1150px;
 }
 
 .dark {
   --white-color: #000;
   --black-color: #fff;
+    --background-opacity: rgba(255, 255, 255, 0.7);
 }
 
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif;
-  background-color: var(--white-color);
-  color: var(--black-color);
+  background-color: var(--white-color) !important;
+  color: var(--black-color) !important;
 }
 .form-control:focus {
   outline: none;

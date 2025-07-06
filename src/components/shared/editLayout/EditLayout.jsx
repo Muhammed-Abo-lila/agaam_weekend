@@ -76,7 +76,7 @@ const EditLayout = ({ articleID, t, backFn }) => {
     <LayoutContainer>
       <form
         className="p-4  row"
-        style={{ backgroundColor: "var(--white-color)" ,maxWidth:"1300px",direction:"ltr"}}
+        style={{ backgroundColor: "var(--white-color)" ,maxWidth: "var(--section-max-width)" ,direction:"ltr"}}
         onSubmit={handleSubmit}
       >
           <DashboardInput

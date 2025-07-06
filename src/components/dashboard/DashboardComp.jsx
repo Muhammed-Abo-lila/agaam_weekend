@@ -16,8 +16,8 @@ const DashboardComp = ({ t, lang }) => {
   return (
     <section dir={lang == "ar" ? "rtl" : "ltr"}>
       <div
-        className="position-relative container py-3 px-3 mt-5 shadow-sm"
-        style={{ maxWidth: "1100px", minHeight: "90vh" }}
+        className="position-relative container py-3 px-3 shadow-sm"
+        style={{maxWidth: "var(--section-max-width)" , minHeight: "90vh" }}
       >
         <NavComp
           articlesData={articlesData}
