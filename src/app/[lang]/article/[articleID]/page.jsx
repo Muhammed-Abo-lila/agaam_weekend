@@ -1,7 +1,7 @@
 import SingleArticle from "@/components/singleArticle/SingleArticle";
 import { fetchToGetData } from "@/helpers/fetcher";
-import { IoMoon, IoSunnyOutline } from "react-icons/io5";
 import { getDictionary } from "../../dictionaries";
+import ThemeToggle from "@/components/shared/ThemeToggle";
 export async function generateMetadata({ params }) {
   const { articleID, lang } = await params;
   const isArabic = lang === "ar";
@@ -55,29 +55,12 @@ export async function generateMetadata({ params }) {
 
 const SingleArtical = async ({ params }) => {
   const { articleID, lang } = await params;
-  const t = await getDictionary(lang);
   return (
     <section
       className="container-lg py-2"
       style={{ maxWidth: "var(--section-max-width)" }}
       dir={lang == "ar" ? "rtl" : "ltr"}
     >
-      <div
-        className="header d-flex justify-content-between align-items-center  border-1 border-black mb-3 pb-2"
-        style={{ borderBottomStyle: "dotted" }}
-      >
-        <h1 className="title d-flex gap-2 fs-4">
-          <span style={{ color: "var(--identity-color)" }}>{t.argaam}</span>
-          <span>{t.weekend}</span>
-        </h1>
-        {/* <div className="d-flex gap-3">
-          <span>{lang == "ar" ? "english" : "العربية"}</span>
-          <span>
-            <IoMoon />
-            <IoSunnyOutline />
-          </span>
-        </div> */}
-      </div>
 
       <SingleArticle articleID={articleID} lang={lang} />
     </section>

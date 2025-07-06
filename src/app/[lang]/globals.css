@@ -7,22 +7,23 @@
   --section-max-width: 800px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --white-color: #000;
+  --black-color: #fff;
 }
+
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif;
+  background-color: var(--white-color);
+  color: var(--black-color);
 }
 .form-control:focus {
   outline: none;
   border: 1px solid var(--identity-color);
   box-shadow: none;
 }
-.article-card img{
-  width:100%
+.article-card img {
+  width: 100%;
 }
 /* start loading style */
 .loading-container {

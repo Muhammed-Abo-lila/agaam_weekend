@@ -34,8 +34,6 @@ const ArticleCard = ({ article, t, lang, type }) => {
                   : article?.meta_data_title_en
               }
               className="card-img-top h-100"
-              width={500}
-              height={500}
             />
           </div>
           <div className="col col-lg-8">
