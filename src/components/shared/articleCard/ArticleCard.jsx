@@ -29,9 +29,13 @@ const ArticleCard = ({ article, t, lang, type }) => {
             <img
               src={article?.meta_data_image_url}
               alt={
-                isArabic ? article?.meta_data_title_ar : article?.meta_data_title_en
+                isArabic
+                  ? article?.meta_data_title_ar
+                  : article?.meta_data_title_en
               }
               className="card-img-top h-100"
+              width={500}
+              height={500}
             />
           </div>
           <div className="col col-lg-8">
@@ -67,7 +71,9 @@ const ArticleCard = ({ article, t, lang, type }) => {
                   article?.meta_data_title_en && <span>متاح بالعربيه</span>}
                 {isArabic &&
                   article?.meta_data_title_ar &&
-                  article?.meta_data_title_ar && <span>available in english</span>}
+                  article?.meta_data_title_ar && (
+                    <span>available in english</span>
+                  )}
                 {type == "dashboard" && (
                   <div className="d-flex justify-content-center align-items-center gap-3 pointer">
                     <Button text={t.edit} fn={() => setShowEditPopup(true)} />
@@ -78,6 +84,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
                   </div>
                 )}
                 <Link
+                  rel="preload"
                   className="text-decoration-none"
                   href={`/${lang}/article/${article?.id}`}
                 >
@@ -90,7 +97,9 @@ const ArticleCard = ({ article, t, lang, type }) => {
       </div>
       {showDeletePopup && (
         <DeleteLayout
-          title={isArabic ? article?.meta_data_title_ar : article?.meta_data_title_en}
+          title={
+            isArabic ? article?.meta_data_title_ar : article?.meta_data_title_en
+          }
           t={t}
           deleteFn={deleteArticle}
           backFn={() => setShowDeletePopup(false)}

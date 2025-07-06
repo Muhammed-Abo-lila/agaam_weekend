@@ -4,26 +4,24 @@ import { IoMoon, IoSunnyOutline } from "react-icons/io5";
 import { getDictionary } from "../../dictionaries";
 export async function generateMetadata({ params }) {
   const { articleID, lang } = await params;
-  const isArabic=lang==="ar";
+  const isArabic = lang === "ar";
   const articleData = await fetchToGetData("articals", articleID);
-  const title =
-    isArabic ? articleData.meta_data_title_ar : articleData.meta_data_title_en;
-  const description =
-    isArabic ? articleData.meta_data_desc_ar : articleData.meta_data_desc_en;
+  const title = isArabic
+    ? articleData.meta_data_title_ar
+    : articleData.meta_data_title_en;
+  const description = isArabic
+    ? articleData.meta_data_desc_ar
+    : articleData.meta_data_desc_en;
   const image = articleData?.meta_data_image_url;
   const url = `${process.env.NEXT_PUBLIC_DEPLOY_DOMAIN_URL}/${lang}/artical/${articleID}`;
   return {
-    title: title,
-    description: description,
-    other: {
-      lang: isArabic?"ar":"en",
-      dir: isArabic?"ltr":"rtl"
-    },
+    title,
+    description,
     openGraph: {
-      title: title,
-      description: description,
-      url: url,
-      siteName: "https://agaam-weekend.vercel.app",
+      title,
+      description,
+      url,
+      siteName: "agaam-weekend.vercel.app",
       images: [
         {
           url: image,
@@ -36,8 +34,8 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: title,
-      description: description,
+      title,
+      description,
       images: [image],
     },
     other: {
@@ -48,7 +46,9 @@ export async function generateMetadata({ params }) {
       "og:image:height": "630",
       "og:url": url,
       "og:type": "website",
-      "og:site_name": "https://agaam-weekend.vercel.app",
+      "og:site_name": "agaam-weekend.vercel.app",
+      lang: isArabic ? "ar" : "en",
+      dir: isArabic ? "ltr" : "rtl",
     },
   };
 }

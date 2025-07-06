@@ -23,7 +23,6 @@ const TextEditor = ({ fn, value, name, placeholder, type }) => {
   useEffect(() => {
     fn(name, textData);
   }, [textData]);
-
   return (
     <div className={`mb-3 col-6`}>
       <ReactQuill
