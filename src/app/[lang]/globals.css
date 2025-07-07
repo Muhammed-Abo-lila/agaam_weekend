@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap");
 :root {
   --font-size-base: 1rem;
   --identity-color: #ee7b0b;
@@ -6,13 +7,11 @@
   --black-color: #000;
   --section-max-width: 1150px;
 }
-
 .dark {
   --white-color: #000;
   --black-color: #fff;
-    --background-opacity: rgba(255, 255, 255, 0.7);
+  --background-opacity: rgba(255, 255, 255, 0.7);
 }
-
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif;
   background-color: var(--white-color) !important;

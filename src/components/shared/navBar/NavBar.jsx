@@ -1,5 +1,7 @@
 import { getDictionary } from "@/app/[lang]/dictionaries";
 import ThemeToggle from "../ThemeToggle";
+import ChangeLangComp from "./navBarAtoms/ChangeLangComp";
+import Link from "next/link";
 const NavBar = async ({ params }) => {
   const { lang } = await params;
   const t = await getDictionary(lang);
@@ -16,13 +18,15 @@ const NavBar = async ({ params }) => {
           borderColor: "var(--black-color)",
         }}
       >
-        <h1 className="title d-flex gap-2 fs-4">
-          <span style={{ color: "var(--identity-color)" }}>{t.argaam}</span>
-          <span>{t.weekend}</span>
-        </h1>
+        <Link href={`/${lang}`} className="text-decoration-none">
+          <h1 className="title d-flex gap-2 fs-4">
+            <span style={{ color: "var(--identity-color)" }}>{t.argaam}</span>
+            <span style={{ color: "var(--black-color)" }}>{t.weekend}</span>
+          </h1>
+        </Link>
         <div className="d-flex gap-3">
-          {/* <span>{lang == "ar" ? "english" : "العربية"}</span> */}
-          <span style={{cursor:"pointer"}}>
+          <ChangeLangComp lang={lang} />
+          <span style={{ cursor: "pointer" }}>
             <ThemeToggle />
           </span>
         </div>
@@ -30,5 +34,4 @@ const NavBar = async ({ params }) => {
     </div>
   );
 };
-
 export default NavBar;
