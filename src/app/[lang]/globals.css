@@ -6,6 +6,7 @@
   --white-color: #fff;
   --black-color: #000;
   --section-max-width: 1150px;
+  --single-article-max-width: 800px;
 }
 .dark {
   --white-color: #000;

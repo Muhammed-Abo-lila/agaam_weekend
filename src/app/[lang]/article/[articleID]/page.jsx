@@ -56,7 +56,7 @@ const SingleArtical = async ({ params }) => {
   return (
     <section
       className="container-lg py-2"
-      style={{ maxWidth: "var(--section-max-width)" }}
+      style={{ maxWidth: "var(--single-article-max-width)" }}
       dir={lang == "ar" ? "rtl" : "ltr"}
     >
 

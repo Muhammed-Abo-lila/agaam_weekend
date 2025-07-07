@@ -1,14 +1,15 @@
-import { getDictionary } from "@/app/[lang]/dictionaries";
+"use client"
+import { usePathname } from "next/navigation";
 import ThemeToggle from "../ThemeToggle";
 import ChangeLangComp from "./navBarAtoms/ChangeLangComp";
 import Link from "next/link";
-const NavBar = async ({ params }) => {
-  const { lang } = await params;
-  const t = await getDictionary(lang);
+const NavBar = ({ lang,t }) => {
+  const pathName=usePathname();
+  const isSingleArticle=pathName.includes("/article")
   return (
     <div
       className="container-lg py-2"
-      style={{ maxWidth: "var(--section-max-width)" }}
+      style={{ maxWidth:isSingleArticle?"var(--single-article-max-width)": "var(--section-max-width)" }}
       dir={lang == "ar" ? "rtl" : "ltr"}
     >
       <div
