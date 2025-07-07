@@ -94,15 +94,7 @@ const DashboardComp = ({ t, lang }) => {
               name="meta_data_image_url"
               value={data?.meta_data_image_url}
               type="url"
-              classes="col-6"
-            />
-            <DashboardInput
-              placeholder="meta data url"
-              fn={collectData}
-              name="meta_data_url"
-              value={data?.meta_data_url}
-              type="text"
-              classes="col-6"
+              classes="col-12"
             />
             <TextEditor
               fn={collectData}
@@ -119,10 +111,10 @@ const DashboardComp = ({ t, lang }) => {
               placeholder="أدخل محتوي المقال بالعربي..."
             />
 
-            <div className="col-6">
+            <div className="col-12 mb-3">
               <Button text={t.submit} type="submit" />
             </div>
-            <div className="col-6">
+            <div className="col-12">
               <Button text={t.preview} fn={() => setShowPreviewPopup(true)} />
             </div>
           </form>

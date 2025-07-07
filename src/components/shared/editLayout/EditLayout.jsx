@@ -18,7 +18,6 @@ const EditLayout = ({ articleID, t, backFn }) => {
     article_data_en: "",
     article_data_ar: "",
     meta_data_image_url: "",
-    meta_data_url: "",
   });
   // get single article
   const [singleArticleData] = useSingleArticleHook(articleID);
@@ -33,7 +32,6 @@ const EditLayout = ({ articleID, t, backFn }) => {
       article_data_en: singleArticleData?.article_data_en,
       article_data_ar: singleArticleData?.article_data_ar,
       meta_data_image_url: singleArticleData?.meta_data_image_url,
-      meta_data_url: singleArticleData?.meta_data_url,
     });
   }, [singleArticleData]);
   // collect data onChange it
@@ -58,7 +56,6 @@ const EditLayout = ({ articleID, t, backFn }) => {
         article_data_en: payload?.article_data_en,
         article_data_ar: payload?.article_data_ar,
         meta_data_image_url: payload?.meta_data_image_url,
-        meta_data_url: payload?.meta_data_url,
       };
       return fetchToUpdateData("articals", formData, articleID);
     },
@@ -139,15 +136,7 @@ const EditLayout = ({ articleID, t, backFn }) => {
             name="meta_data_image_url"
             value={data?.meta_data_image_url}
             type="url"
-            classes="col-6"
-          />
-          <DashboardInput
-            placeholder="meta data url"
-            fn={collectData}
-            name="meta_data_url"
-            value={data?.meta_data_url}
-            type="text"
-            classes="col-6"
+            classes="col-12"
           />
           <TextEditor
             fn={collectData}

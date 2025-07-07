@@ -12,7 +12,6 @@ const useDashboardHook = () => {
     article_data_en: "",
     article_data_ar: "",
     meta_data_image_url: "",
-    meta_data_url: "",
   });
   const queryClient = useQueryClient();
   // collect data function
@@ -34,7 +33,6 @@ const useDashboardHook = () => {
         article_data_en: payload?.article_data_en,
         article_data_ar: payload?.article_data_ar,
         meta_data_image_url: payload?.meta_data_image_url,
-        meta_data_url: payload?.meta_data_url,
       };
       return fetchToPostData("articals", formData);
     },
@@ -49,7 +47,6 @@ const useDashboardHook = () => {
         article_data_en: "",
         article_data_ar: "",
         meta_data_image_url: "",
-        meta_data_url: "",
       });
       queryClient.invalidateQueries(["articles"]);
     },
