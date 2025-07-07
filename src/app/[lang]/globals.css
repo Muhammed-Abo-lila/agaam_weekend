@@ -17,13 +17,19 @@ body {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
 }
+.text-black{
+  color: #000 !important;
+}
+.bg-white{
+  background-color: #fff !important;
+}
 .form-control:focus {
   outline: none;
   border: 1px solid var(--identity-color);
   box-shadow: none;
 }
 .article-card img {
-  width: 100%;
+  max-width: 100%;
 }
 /* start loading style */
 .loading-container {
@@ -120,9 +126,16 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+.nav-list li {
+  border-radius: 10px 10px 0px 0px;
+}
+.nav-list li:not(.active-tab) {
+  border: 1px solid transparent;
+  background-color: #f6f6f6;
+  color: black;
+}
 .active-tab {
   border: 1px solid var(--identity-color);
-  border-radius: 10px 10px 0px 0px;
   border-bottom: 0px;
   position: relative;
   background-color: var(--identity-color);
@@ -148,7 +161,69 @@ body {
   color: #999;
   font-style: italic;
 }
-.ql-direction .ql-editor {
+.react-quill .ql-editor {
   height: 400px;
+  color: #000 !important;
 }
 /* end react quill style */
+
+
+
+.ql-size-8 {
+  font-size: 8px;
+}
+.ql-size-9 {
+  font-size: 9px;
+}
+.ql-size-10 {
+  font-size: 10px;
+}
+.ql-size-11 {
+  font-size: 11px;
+}
+.ql-size-12 {
+  font-size: 12px;
+}
+.ql-size-13 {
+  font-size: 13px;
+}
+.ql-size-14 {
+  font-size: 14px;
+}
+.ql-size-16 {
+  font-size: 16px;
+}
+.ql-size-18 {
+  font-size: 18px;
+}
+.ql-size-24 {
+  font-size: 24px;
+}
+.ql-size-36 {
+  font-size: 36px;
+}
+.ql-align-center{
+  text-align: center;
+}
+.react-quill *{
+  margin-bottom: 0px !important;
+}
+.ql-editor img {
+  display: block;
+  margin: auto;
+}
+
+.ql-align-right img {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.ql-align-left img {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.ql-align-center img {
+  margin-left: auto;
+  margin-right: auto;
+}

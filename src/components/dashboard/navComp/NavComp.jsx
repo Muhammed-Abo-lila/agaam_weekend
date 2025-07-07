@@ -1,21 +1,25 @@
-const NavComp = ({ articlesData, t, activeTab,setActiveTab }) => {
+const NavComp = ({ tabsData, t, activeTab, setActiveTab, lang }) => {
   return (
-    <ul className="list-unstyled d-flex start-0 border-bottom">
-      <li
-        className={`fw-medium px-4 py-1 text-capitalize cursor-pointer ${activeTab=="add"&&"active-tab"}`}
-        onClick={() => setActiveTab("add")}
-      >
-        {t.add}
-      </li>
-      {articlesData && articlesData?.length > 0 && (
-        <li
-        className={`fw-medium px-4 py-1 text-capitalize cursor-pointer ${activeTab=="edit"&&"active-tab"}`}
-          onClick={() => setActiveTab("edit")}
+    <>
+      {tabsData && (
+        <ul
+          dir={lang == "ar" ? "rtl" : "ltr"}
+          className="nav-list list-unstyled d-flex start-0 border-bottom p-0"
         >
-          {t.edit}
-        </li>
+          {tabsData?.map((tab, idx) => (
+            <li
+              key={idx}
+              className={`fw-medium px-4 py-1 text-capitalize cursor-pointer ${
+                activeTab == tab.name && "active-tab"
+              }`}
+              onClick={() => setActiveTab(tab?.name)}
+            >
+              {t[tab?.name]}
+            </li>
+          ))}
+        </ul>
       )}
-    </ul>
+    </>
   );
 };
 export default NavComp;

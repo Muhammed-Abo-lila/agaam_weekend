@@ -1,7 +1,5 @@
 import SingleArticle from "@/components/singleArticle/SingleArticle";
 import { fetchToGetData } from "@/helpers/fetcher";
-import { getDictionary } from "../../dictionaries";
-import ThemeToggle from "@/components/shared/ThemeToggle";
 export async function generateMetadata({ params }) {
   const { articleID, lang } = await params;
   const isArabic = lang === "ar";

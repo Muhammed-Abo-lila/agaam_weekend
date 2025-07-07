@@ -8,22 +8,29 @@ import Loading from "../shared/loading/Loading";
 import Button from "../shared/button/Button";
 import { useState } from "react";
 import TextEditor from "../TextEditor";
+import PreviewComp from "./previewComp/PreviewComp";
 const DashboardComp = ({ t, lang }) => {
+    const tabsData=[
+    {name:"add"},
+    {name:"edit"}
+  ]
   const [activeTab, setActiveTab] = useState("add");
+  const [showPreviewPopup, setShowPreviewPopup] = useState(false);
   const [data, collectData, handleSubmit, mutation] = useDashboardHook();
   const [articlesData] = useHomeHook();
   if (mutation?.isPending) return <Loading />;
   return (
-    <section dir={lang == "ar" ? "rtl" : "ltr"}>
+    <section>
       <div
-        className="position-relative container py-3 px-3 shadow-sm"
-        style={{maxWidth: "var(--section-max-width)" , minHeight: "90vh" }}
+        className="bg-white position-relative container py-3 px-3 shadow-sm rounded-2"
+        style={{ maxWidth: "var(--section-max-width)", minHeight: "90vh" }}
       >
         <NavComp
-          articlesData={articlesData}
+        tabsData={tabsData}
           t={t}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
+          lang={lang}
         />
         {activeTab == "add" && (
           <form className="row" onSubmit={handleSubmit}>
@@ -112,12 +119,12 @@ const DashboardComp = ({ t, lang }) => {
               placeholder="أدخل محتوي المقال بالعربي..."
             />
 
-            {/* <div className="col-6"> */}
+            <div className="col-6">
               <Button text={t.submit} type="submit" />
-            {/* </div> */}
-            {/* <div className="col-6">
-              <Button text={t.preview} />
-            </div> */}
+            </div>
+            <div className="col-6">
+              <Button text={t.preview} fn={() => setShowPreviewPopup(true)} />
+            </div>
           </form>
         )}
 
@@ -135,6 +142,14 @@ const DashboardComp = ({ t, lang }) => {
           </div>
         )}
       </div>
+      {showPreviewPopup && (
+        <PreviewComp
+          articleToPreview={data}
+          setShowPreviewPopup={setShowPreviewPopup}
+          t={t}
+          lang={lang}
+        />
+      )}
     </section>
   );
 };
