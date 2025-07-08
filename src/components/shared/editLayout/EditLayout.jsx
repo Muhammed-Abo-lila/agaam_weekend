@@ -6,6 +6,7 @@ import useSingleArticleHook from "../../../hooks/useSingleArticleHook";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchToUpdateData } from "../../../helpers/fetcher";
 import TextEditor from "@/components/TextEditor";
+import FloaraTextEditor from "@/components/floraTextEditor/FloraTextEditor";
 const EditLayout = ({ articleID, t, backFn }) => {
   const queryClient = useQueryClient();
   const [data, setData] = useState({
@@ -138,20 +139,20 @@ const EditLayout = ({ articleID, t, backFn }) => {
             type="url"
             classes="col-12"
           />
-          <TextEditor
-            fn={collectData}
-            value={data?.article_data_en}
-            name="article_data_en"
-            type="en"
-            placeholder="Write your content here..."
-          />
-          <TextEditor
-            fn={collectData}
-            value={data?.article_data_ar}
-            name="article_data_ar"
-            type="ar"
-            placeholder="أدخل محتوي المقال بالعربي..."
-          />
+          <FloaraTextEditor
+              fn={collectData}
+              value={data?.article_data_en}
+              name="article_data_en"
+              type="en"
+              placeholder="Write your content here..."
+            />
+           <FloaraTextEditor
+              fn={collectData}
+              value={data?.article_data_ar}
+              name="article_data_ar"
+              type="ar"
+              placeholder="أدخل محتوي المقال بالعربي..."
+            />
         <div className="d-flex justify-content-center align-content-center gap-5">
           <Button text={t.submit} type="submit" />
           <Button text={t.back} fn={backFn} />

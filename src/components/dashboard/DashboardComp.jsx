@@ -9,16 +9,16 @@ import Button from "../shared/button/Button";
 import { useState } from "react";
 import TextEditor from "../TextEditor";
 import PreviewComp from "./previewComp/PreviewComp";
+import FloaraTextEditor from "../floraTextEditor/FloraTextEditor";
 const DashboardComp = ({ t, lang }) => {
-    const tabsData=[
-    {name:"add"},
-    {name:"edit"}
-  ]
+  const tabsData = [{ name: "add" }, { name: "edit" }];
   const [activeTab, setActiveTab] = useState("add");
   const [showPreviewPopup, setShowPreviewPopup] = useState(false);
   const [data, collectData, handleSubmit, mutation] = useDashboardHook();
   const [articlesData] = useHomeHook();
   if (mutation?.isPending) return <Loading />;
+  console.log("data==========================>",data);
+  
   return (
     <section>
       <div
@@ -26,7 +26,7 @@ const DashboardComp = ({ t, lang }) => {
         style={{ maxWidth: "var(--section-max-width)", minHeight: "90vh" }}
       >
         <NavComp
-        tabsData={tabsData}
+          tabsData={tabsData}
           t={t}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -96,21 +96,20 @@ const DashboardComp = ({ t, lang }) => {
               type="url"
               classes="col-12"
             />
-            <TextEditor
+            <FloaraTextEditor
               fn={collectData}
               value={data?.article_data_en}
               name="article_data_en"
               type="en"
               placeholder="Write your content here..."
             />
-            <TextEditor
+            <FloaraTextEditor
               fn={collectData}
               value={data?.article_data_ar}
               name="article_data_ar"
               type="ar"
               placeholder="أدخل محتوي المقال بالعربي..."
             />
-
             <div className="col-12 mb-3">
               <Button text={t.submit} type="submit" />
             </div>

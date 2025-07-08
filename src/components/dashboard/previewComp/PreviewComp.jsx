@@ -8,7 +8,7 @@ const PreviewComp = ({ articleToPreview, setShowPreviewPopup, t, lang }) => {
   ]
   return (
     <div 
-    className="preview-container position-fixed top-0 bottom-0 end-0 start-0 d-flex justify-content-center py-4 z-1"
+    className="preview-container position-fixed top-0 bottom-0 end-0 start-0 d-flex justify-content-center py-4 z-2"
     style={{ backgroundColor: "var(--background-opacity)" }}
     >
       <div
