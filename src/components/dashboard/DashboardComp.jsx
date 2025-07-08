@@ -7,7 +7,6 @@ import useHomeHook from "@/hooks/useHomeHook";
 import Loading from "../shared/loading/Loading";
 import Button from "../shared/button/Button";
 import { useState } from "react";
-import TextEditor from "../TextEditor";
 import PreviewComp from "./previewComp/PreviewComp";
 import FloaraTextEditor from "./floraTextEditor/FloraTextEditor";
 const DashboardComp = ({ t, lang }) => {
@@ -17,8 +16,6 @@ const DashboardComp = ({ t, lang }) => {
   const [data, collectData, handleSubmit, mutation] = useDashboardHook();
   const [articlesData] = useHomeHook();
   if (mutation?.isPending) return <Loading />;
-  console.log("data==========================>",data);
-  
   return (
     <section>
       <div
