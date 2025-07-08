@@ -9,7 +9,7 @@ import Button from "../shared/button/Button";
 import { useState } from "react";
 import TextEditor from "../TextEditor";
 import PreviewComp from "./previewComp/PreviewComp";
-import FloaraTextEditor from "../floraTextEditor/FloraTextEditor";
+import FloaraTextEditor from "./floraTextEditor/FloraTextEditor";
 const DashboardComp = ({ t, lang }) => {
   const tabsData = [{ name: "add" }, { name: "edit" }];
   const [activeTab, setActiveTab] = useState("add");

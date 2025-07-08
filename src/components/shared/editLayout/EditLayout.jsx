@@ -6,7 +6,7 @@ import useSingleArticleHook from "../../../hooks/useSingleArticleHook";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchToUpdateData } from "../../../helpers/fetcher";
 import TextEditor from "@/components/TextEditor";
-import FloaraTextEditor from "@/components/floraTextEditor/FloraTextEditor";
+import FloaraTextEditor from "@/components/dashboard/floraTextEditor/FloraTextEditor";
 const EditLayout = ({ articleID, t, backFn }) => {
   const queryClient = useQueryClient();
   const [data, setData] = useState({
