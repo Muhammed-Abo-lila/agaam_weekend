@@ -163,3 +163,6 @@ b{
   height: 2px;
   background-color: #fff;
 }
+.fr-wrapper>div{
+  display: none;
+}
