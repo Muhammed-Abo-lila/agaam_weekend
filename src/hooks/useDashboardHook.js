@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { fetchToPostData } from "../helpers/fetcher";
 const useDashboardHook = () => {
+  const queryClient = useQueryClient();
   const [data, setData] = useState({
     meta_data_title_en: "",
     meta_data_title_ar: "",
@@ -12,8 +13,8 @@ const useDashboardHook = () => {
     article_data_en: "",
     article_data_ar: "",
     meta_data_image_url: "",
+    article_number: "",
   });
-  const queryClient = useQueryClient();
   // collect data function
   const collectData = (type, value) => {
     setData((prev) => ({
@@ -33,6 +34,7 @@ const useDashboardHook = () => {
         article_data_en: payload?.article_data_en,
         article_data_ar: payload?.article_data_ar,
         meta_data_image_url: payload?.meta_data_image_url,
+        article_number: singleArticleData?.article_number,
       };
       return fetchToPostData("articals", formData);
     },
@@ -47,6 +49,7 @@ const useDashboardHook = () => {
         article_data_en: "",
         article_data_ar: "",
         meta_data_image_url: "",
+        article_number: "",
       });
       queryClient.invalidateQueries(["articles"]);
     },
