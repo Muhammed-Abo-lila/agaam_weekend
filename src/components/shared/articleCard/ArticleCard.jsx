@@ -53,7 +53,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
                       {(isArabic
                         ? article?.meta_data_desc_ar
                         : article?.meta_data_desc_en
-                      ).slice(0, 160)}
+                      )?.slice(0, 160)}
                     </p>
                   </div>
                   <div
