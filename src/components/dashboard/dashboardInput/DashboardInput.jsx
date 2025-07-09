@@ -1,6 +1,4 @@
-// components/shared/DashboardInput.jsx
 "use client";
-
 const DashboardInput = ({
   placeholder,
   fn,
@@ -25,7 +23,7 @@ const DashboardInput = ({
         placeholder={placeholder}
         type={type}
         className="form-control"
-        value={value}
+        value={value||""}
         name={name}
         required={requiredFields.includes(name)}
         onChange={(e) => fn(name, e.target.value)}

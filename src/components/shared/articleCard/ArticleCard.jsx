@@ -3,7 +3,13 @@ import Link from "next/link";
 import DeleteLayout from "../deleteLayout/DeleteLayout";
 import EditLayout from "../editLayout/EditLayout";
 import useArticleCardHook from "@/hooks/useArticleCardHook";
+import { useParams, usePathname } from "next/navigation";
 const ArticleCard = ({ article, t, lang, type }) => {
+  const pathName = usePathname();
+  const isDashboard = pathName?.split("/")[2] === "dashboard";
+  console.log("pathName", pathName);
+  console.log("isDashboard", isDashboard);
+
   const [
     isArabic,
     showDeletePopup,
@@ -11,23 +17,33 @@ const ArticleCard = ({ article, t, lang, type }) => {
     showEditPopup,
     setShowEditPopup,
     deleteArticle,
-  ] = useArticleCardHook(article?.id,lang);
+  ] = useArticleCardHook(article?.id, lang);
+  const title = isArabic
+    ? article?.meta_data_title_ar
+    : article?.meta_data_title_en;
+  const desc = isArabic
+    ? article?.meta_data_desc_ar
+    : article?.meta_data_desc_en;
   return (
     <>
-      {((isArabic && article?.article_data_ar) ||
-        (!isArabic && article?.article_data_en)) && (
+      {(isDashboard ||
+        (isArabic &&
+          article?.article_data_ar &&
+          article?.meta_data_title_ar &&
+          article?.meta_data_desc_ar) ||
+        (!isArabic &&
+          article?.article_data_en &&
+          article?.meta_data_title_en &&
+          article?.meta_data_desc_en)) && (
         <div className="col-sm-6">
-          <div className="card h-100">
+          <div className="card h-100" style={{ minHeight: "160px" }}>
             <div className="row g-0 flex-column flex-lg-row h-100">
               <div className="col col-lg-4">
                 <img
                   src={article?.meta_data_image_url}
-                  alt={
-                    isArabic
-                      ? article?.meta_data_title_ar
-                      : article?.meta_data_title_en
-                  }
+                  alt={title}
                   className="card-img-top h-100"
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               <div className="col col-lg-8">
@@ -39,9 +55,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
                         fontSize: "calc(var(--font-size-base) + 0.1rem)",
                       }}
                     >
-                      {isArabic
-                        ? article?.meta_data_title_ar
-                        : article?.meta_data_title_en}
+                      {title?.length > 35 ? title?.slice(0, 35) + "..." : title}
                     </h5>
                     <p
                       className="card-text mt-2"
@@ -50,10 +64,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
                         minHeight: "50%",
                       }}
                     >
-                      {(isArabic
-                        ? article?.meta_data_desc_ar
-                        : article?.meta_data_desc_en
-                      )?.slice(0, 160)}
+                      {desc?.length > 150 ? desc?.slice(0, 150) + "..." : desc}
                     </p>
                   </div>
                   <div

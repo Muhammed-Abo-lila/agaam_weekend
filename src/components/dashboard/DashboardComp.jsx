@@ -16,6 +16,8 @@ const DashboardComp = ({ t, lang }) => {
   const [data, collectData, handleSubmit, addAndUpdateMutation] =
     useAddAndEditArticle("add");
   const [articlesData] = useHomeHook();
+  console.log("articlesData============>",articlesData);
+  
   if (addAndUpdateMutation?.isPending) return <Loading />;
   return (
     <section>
