@@ -143,7 +143,7 @@ const EditLayout = ({ articleID, t, backFn }) => {
           name="meta_data_image_url"
           value={data?.meta_data_image_url}
           type="url"
-          classes="col-12"
+          classes="col-6"
         />
         <DashboardInput
           placeholder="article number"
