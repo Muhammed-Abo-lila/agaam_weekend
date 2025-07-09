@@ -18,10 +18,10 @@ body {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
 }
-.text-black{
+.text-black {
   color: #000 !important;
 }
-.bg-white{
+.bg-white {
   background-color: #fff !important;
 }
 .form-control:focus {
@@ -124,14 +124,14 @@ body {
   }
 }
 /* start floara style */
-.fr-wrapper{
+.fr-wrapper {
   height: 300px !important;
-   overflow-y: auto !important;
+  overflow-y: auto !important;
 }
-.fr-rounded{
+.fr-rounded {
   border-radius: 8px;
 }
-b{
+b {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
 }
@@ -163,6 +163,9 @@ b{
   height: 2px;
   background-color: #fff;
 }
-/* .fr-wrapper > div:first-of-type {
-  display: none;
-} */
+.fr-second-toolbar,
+.fr-wrapper div:first-child,
+div[data-f-id="pdf"],
+article p:last-child {
+  display: none !important;
+}

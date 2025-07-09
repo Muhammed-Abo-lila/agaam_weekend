@@ -50,7 +50,6 @@ export async function generateMetadata({ params }) {
     },
   };
 }
-
 const SingleArtical = async ({ params }) => {
   const { articleID, lang } = await params;
   return (
@@ -59,7 +58,6 @@ const SingleArtical = async ({ params }) => {
       style={{ maxWidth: "var(--single-article-max-width)" }}
       dir={lang == "ar" ? "rtl" : "ltr"}
     >
-
       <SingleArticle articleID={articleID} lang={lang} />
     </section>
   );

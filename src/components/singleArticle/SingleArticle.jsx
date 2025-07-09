@@ -1,27 +1,25 @@
 "use client";
 import useSingleArticleHook from "@/hooks/useSingleArticleHook";
+import { useRouter } from "next/navigation";
 import Loading from "../shared/loading/Loading";
-import { useEffect, useRef } from "react";
 const SingleArticle = ({ articleID, lang }) => {
-  const articleCardRef = useRef();
-  const isArabic = lang == "ar";
-  const [singleArticleData, isLoading, isError, error] =
-    useSingleArticleHook(articleID);
-  useEffect(() => {
-    if (articleCardRef?.current) {
-      const allImages = articleCardRef?.current?.querySelectorAll("img");
-      allImages.forEach((img) =>
-        img.setAttribute(
-          "alt",
-          isArabic
-            ? singleArticleData?.meta_data_title_ar
-            : singleArticleData?.meta_data_title_en
-        )
-      );
-    }
-  }, [singleArticleData]);
+  const router = useRouter();
+  const [
+    singleArticleData,
+    isLoading,
+    isError,
+    error,
+    articleCardRef,
+    isArabic,
+  ] = useSingleArticleHook(articleID, lang);
   if (isLoading) return <Loading />;
   if (isError) return <div>error:-{error}</div>;
+  if (isArabic && singleArticleData?.article_data_ar == "") {
+    router.replace(`/${lang}`);
+  }
+  if (!isArabic && singleArticleData?.article_data_en == "") {
+    router.replace(`/${lang}`);
+  }
   return (
     <>
       {singleArticleData && (

@@ -1,77 +1,10 @@
-import { useEffect, useState } from "react";
 import DashboardInput from "../../dashboard/dashboardInput/DashboardInput";
 import LayoutContainer from "../layoutContainer/LayoutContainer";
 import Button from "../button/Button";
-import useSingleArticleHook from "../../../hooks/useSingleArticleHook";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchToUpdateData } from "../../../helpers/fetcher";
 import FloaraTextEditor from "@/components/dashboard/floraTextEditor/FloraTextEditor";
+import useAddAndEditArticle from "@/hooks/useAddAndEditArticle";
 const EditLayout = ({ articleID, t, backFn }) => {
-  const queryClient = useQueryClient();
-  const [data, setData] = useState({
-    meta_data_title_en: "",
-    meta_data_title_ar: "",
-    meta_data_desc_en: "",
-    meta_data_desc_ar: "",
-    meta_data_keywords_en: "",
-    meta_data_keywords_ar: "",
-    article_data_en: "",
-    article_data_ar: "",
-    meta_data_image_url: "",
-    article_number:""
-  });
-  // get single article
-  const [singleArticleData] = useSingleArticleHook(articleID);
-  useEffect(() => {
-    setData({
-      meta_data_title_en: singleArticleData?.meta_data_title_en,
-      meta_data_title_ar: singleArticleData?.meta_data_title_ar,
-      meta_data_desc_en: singleArticleData?.meta_data_desc_en,
-      meta_data_desc_ar: singleArticleData?.meta_data_desc_ar,
-      meta_data_keywords_en: singleArticleData?.meta_data_keywords_en,
-      meta_data_keywords_ar: singleArticleData?.meta_data_keywords_ar,
-      article_data_en: singleArticleData?.article_data_en,
-      article_data_ar: singleArticleData?.article_data_ar,
-      meta_data_image_url: singleArticleData?.meta_data_image_url,
-      article_number: singleArticleData?.article_number,
-    });
-  }, [singleArticleData]);
-  // collect data onChange it
-  const collectData = (type, value) => {
-    setData((prev) => ({
-      ...prev,
-      [`${type}`]: value,
-    }));
-  };
-
-  // update article
-  const updateMutation = useMutation({
-    mutationFn: (payload) => {
-      const formData = {
-        id: articleID,
-        meta_data_title_en: payload?.meta_data_title_en,
-        meta_data_title_ar: payload?.meta_data_title_ar,
-        meta_data_desc_en: payload?.meta_data_desc_en,
-        meta_data_desc_ar: payload?.meta_data_desc_ar,
-        meta_data_keywords_en: payload?.meta_data_keywords_en,
-        meta_data_keywords_ar: payload?.meta_data_keywords_ar,
-        article_data_en: payload?.article_data_en,
-        article_data_ar: payload?.article_data_ar,
-        meta_data_image_url: payload?.meta_data_image_url,
-        article_number: payload?.article_number,
-      };
-      return fetchToUpdateData("articals", formData, articleID);
-    },
-    onSuccess: async () => {
-      backFn();
-      queryClient.invalidateQueries(["singleArticleData", articleID]);
-      queryClient.invalidateQueries(["articles"]);
-    },
-  });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    updateMutation.mutate(data);
-  };
+  const [data,collectData,handleSubmit]=useAddAndEditArticle("edit",articleID,backFn)
   return (
     <LayoutContainer>
       <form

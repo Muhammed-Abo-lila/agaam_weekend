@@ -2,20 +2,21 @@
 import DashboardInput from "./dashboardInput/DashboardInput";
 import NavComp from "./navComp/NavComp";
 import ArticleCard from "../shared/articleCard/ArticleCard";
-import useDashboardHook from "@/hooks/useDashboardHook";
 import useHomeHook from "@/hooks/useHomeHook";
 import Loading from "../shared/loading/Loading";
 import Button from "../shared/button/Button";
 import { useState } from "react";
 import PreviewComp from "./previewComp/PreviewComp";
 import FloaraTextEditor from "./floraTextEditor/FloraTextEditor";
+import useAddAndEditArticle from "@/hooks/useAddAndEditArticle";
 const DashboardComp = ({ t, lang }) => {
   const tabsData = [{ name: "add" }, { name: "edit" }];
   const [activeTab, setActiveTab] = useState("add");
   const [showPreviewPopup, setShowPreviewPopup] = useState(false);
-  const [data, collectData, handleSubmit, mutation] = useDashboardHook();
+  const [data, collectData, handleSubmit, addAndUpdateMutation] =
+    useAddAndEditArticle("add");
   const [articlesData] = useHomeHook();
-  if (mutation?.isPending) return <Loading />;
+  if (addAndUpdateMutation?.isPending) return <Loading />;
   return (
     <section>
       <div
