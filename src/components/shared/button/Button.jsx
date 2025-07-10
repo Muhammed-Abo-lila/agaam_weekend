@@ -1,4 +1,3 @@
-import "./Button.css";
 const Button = ({ text, type, fn }) => {
   return (
     <>

@@ -1,3 +1,4 @@
+/* global css */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap");
 :root {
   --font-size-base: 1rem;
@@ -17,12 +18,6 @@ body {
   font-family: "IBM Plex Sans Arabic", sans-serif;
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
-}
-.text-black {
-  color: #000 !important;
-}
-.bg-white {
-  background-color: #fff !important;
 }
 .form-control:focus {
   outline: none;
@@ -114,6 +109,14 @@ body {
   border-bottom: none;
   border-radius: 4px 4px 0px 0px;
 }
+.nav-list li {
+  border-radius: 10px 10px 0px 0px;
+}
+.nav-list li:not(.active-tab) {
+  border: 1px solid transparent;
+  background-color: #f6f6f6;
+  color: black;
+}
 @media screen and (max-width: 576px) {
   .nav {
     flex-wrap: nowrap;
@@ -132,17 +135,21 @@ b {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
 }
+.fr-second-toolbar,
+.fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
+div[data-f-id="pdf"],
+article p:last-child {
+  visibility: hidden !important;
+}
 /* custom classes */
+.text-black {
+  color: #000 !important;
+}
+.bg-white {
+  background-color: #fff !important;
+}
 .cursor-pointer {
   cursor: pointer;
-}
-.nav-list li {
-  border-radius: 10px 10px 0px 0px;
-}
-.nav-list li:not(.active-tab) {
-  border: 1px solid transparent;
-  background-color: #f6f6f6;
-  color: black;
 }
 .active-tab {
   border: 1px solid var(--identity-color);
@@ -160,12 +167,7 @@ b {
   height: 2px;
   background-color: white;
 }
-.fr-second-toolbar,
-.fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
-div[data-f-id="pdf"],
-article p:last-child {
-  visibility: hidden !important;
-}
+
 /* start single article style */
 .article-card img {
   object-fit: cover;
@@ -194,3 +196,19 @@ article p:last-child {
 }
 /* end single article style */
 
+/* start custom button comp style */
+.button {
+  min-width: 50px;
+  background-color: var(--identity-color);
+  color: var(--white-color);
+  border: 1px solid var(--identity-color);
+  transition: all 0.3s ease-in-out;
+  font-size: 13px;
+  padding: 5px 3px;
+}
+.button:hover {
+  background-color: var(--white-color);
+  color: var(--identity-color);
+  border: 1px solid var(--identity-color);
+}
+/* end custom button comp style */
