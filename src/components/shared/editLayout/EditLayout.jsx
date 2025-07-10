@@ -4,7 +4,11 @@ import Button from "../button/Button";
 import FloaraTextEditor from "@/components/dashboard/floraTextEditor/FloraTextEditor";
 import useAddAndEditArticle from "@/hooks/useAddAndEditArticle";
 const EditLayout = ({ articleID, t, backFn }) => {
-  const [data,collectData,handleSubmit]=useAddAndEditArticle("edit",articleID,backFn)
+  const [data, collectData, handleSubmit] = useAddAndEditArticle(
+    "edit",
+    articleID,
+    backFn
+  );
   return (
     <LayoutContainer>
       <form
@@ -76,7 +80,16 @@ const EditLayout = ({ articleID, t, backFn }) => {
           name="meta_data_image_url"
           value={data?.meta_data_image_url}
           type="url"
-          classes="col-12"
+          classes="col-6"
+        />
+        <DashboardInput
+          placeholder="article number"
+          fn={collectData}
+          name="article_number"
+          value={data?.article_number}
+          type="text"
+          classes="col-6"
+          readOnly
         />
         <FloaraTextEditor
           fn={collectData}

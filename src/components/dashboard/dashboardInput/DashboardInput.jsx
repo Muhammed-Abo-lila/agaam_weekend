@@ -5,14 +5,17 @@ const DashboardInput = ({
   name,
   value,
   inputDir,
-  type = "text",
-  classes = "",
+  type,
+  classes,
+  readOnly,
+  isArticleNumUnique,
 }) => {
   const requiredFields = [
     "meta_data_title_en",
     "meta_data_desc_en",
     "meta_data_keywords_en",
     "meta_data_image_url",
+    "article_number"
   ];
 
   return (
@@ -21,12 +24,23 @@ const DashboardInput = ({
         dir={inputDir || "ltr"}
         placeholder={placeholder}
         type={type}
-        className="form-control"
-        value={value||""}
+        className={`form-control ${
+          isArticleNumUnique && "border border-danger"
+        }`}
+        value={value || ""}
         name={name}
+        readOnly={readOnly}
         required={requiredFields.includes(name)}
         onChange={(e) => fn(name, e.target.value)}
       />
+      {isArticleNumUnique && (
+        <p
+          className="text-danger text-center mt-2 fw-bold"
+          style={{ fontSize: "10px" }}
+        >
+          أدخل رقم مقال غير مكرر
+        </p>
+      )}
     </div>
   );
 };

@@ -2,7 +2,6 @@
 import DashboardInput from "./dashboardInput/DashboardInput";
 import NavComp from "./navComp/NavComp";
 import ArticleCard from "../shared/articleCard/ArticleCard";
-import useHomeHook from "@/hooks/useHomeHook";
 import Loading from "../shared/loading/Loading";
 import Button from "../shared/button/Button";
 import { useState } from "react";
@@ -14,9 +13,14 @@ const DashboardComp = ({ t, lang }) => {
   const tabsData = [{ name: "add" }, { name: "edit" }];
   const [activeTab, setActiveTab] = useState("add");
   const [showPreviewPopup, setShowPreviewPopup] = useState(false);
-  const [data, collectData, handleSubmit, addAndUpdateMutation] =
-    useAddAndEditArticle("add");
-  const [articlesData] = useHomeHook();
+  const [
+    data,
+    collectData,
+    handleSubmit,
+    addAndUpdateMutation,
+    articlesData,
+    isArticleNumUnique,
+  ] = useAddAndEditArticle("add");
   if (addAndUpdateMutation?.isPending) return <Loading />;
   return (
     <section>
@@ -93,7 +97,16 @@ const DashboardComp = ({ t, lang }) => {
               name="meta_data_image_url"
               value={data?.meta_data_image_url}
               type="url"
-              classes="col-12"
+              classes="col-6"
+            />
+            <DashboardInput
+              placeholder="article number"
+              fn={collectData}
+              name="article_number"
+              value={data?.article_number}
+              type="text"
+              classes="col-6"
+              isArticleNumUnique={isArticleNumUnique}
             />
             <FloaraTextEditor
               fn={collectData}

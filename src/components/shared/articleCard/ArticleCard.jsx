@@ -21,7 +21,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
   return (
     <div className="col-sm-6">
       <div className="card h-100 position-relative overflow-hidden" style={{ minHeight: "160px" }}>
-        <span className="article-number position-absolute top-0 end-0 d-flex justify-content-center align-items-center bg-black" style={{width:"30px",height:"30px",color:"var(--identity-color)"}}>{article?.id}</span>
+        <span className="article-number position-absolute top-0 end-0 d-flex justify-content-center align-items-center bg-black" style={{width:"30px",height:"30px",color:"var(--identity-color)"}}>{article?.article_number}</span>
         <div className="row g-0 flex-column flex-lg-row h-100">
           <div className="col col-lg-4">
             <img

@@ -12,6 +12,7 @@ const useSingleArticleHook = (articleID, lang) => {
   } = useQuery({
     queryKey: ["singleArticleData", articleID],
     queryFn: () => fetchToGetData("articals", articleID),
+     enabled: !!articleID,
     staleTime: 2 * 60 * 60 * 1000,
   });
   useEffect(() => {
