@@ -15,11 +15,11 @@ export const fetchToGetData = async (endPoint, id) => {
       `${supabaseUrl}/rest/v1/${endPoint}${id ? `?id=eq.${id}` : ""}`,
       { headers }
     );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
+    if (response.ok) {
     const data = await response.json();
     return data;
+    }
+
   } catch (e) {
     console.error("Fetch error:", e);
     throw e;

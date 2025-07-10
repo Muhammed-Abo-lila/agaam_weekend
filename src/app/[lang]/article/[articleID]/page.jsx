@@ -6,11 +6,11 @@ export async function generateMetadata({ params }) {
   const isArabic = lang === "ar";
   const articleData = await fetchToGetData("articals", articleID);
   const title = isArabic
-    ? articleData.meta_data_title_ar
-    : articleData.meta_data_title_en;
+    ? articleData?.meta_data_title_ar
+    : articleData?.meta_data_title_en;
   const description = isArabic
-    ? articleData.meta_data_desc_ar
-    : articleData.meta_data_desc_en;
+    ? articleData?.meta_data_desc_ar
+    : articleData?.meta_data_desc_en;
   const image = articleData?.meta_data_image_url;
   const url = `${process.env.NEXT_PUBLIC_DEPLOY_DOMAIN_URL}/${lang}/artical/${articleID}`;
   return {
