@@ -9,6 +9,7 @@ const DashboardInput = ({
   classes,
   readOnly,
   isArticleNumUnique,
+  t
 }) => {
   const requiredFields = [
     "meta_data_title_en",
@@ -38,7 +39,7 @@ const DashboardInput = ({
           className="text-danger text-center mt-2 fw-bold"
           style={{ fontSize: "10px" }}
         >
-          أدخل رقم مقال غير مكرر
+         {t.article_num_unique}
         </p>
       )}
     </div>

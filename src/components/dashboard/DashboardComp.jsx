@@ -107,6 +107,7 @@ const DashboardComp = ({ t, lang }) => {
               type="text"
               classes="col-6"
               isArticleNumUnique={isArticleNumUnique}
+              t={t}
             />
             <FloaraTextEditor
               fn={collectData}
