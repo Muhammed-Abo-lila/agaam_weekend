@@ -2,6 +2,8 @@
 import useSingleArticleHook from "@/hooks/useSingleArticleHook";
 import Loading from "../shared/loading/Loading";
 import EmptyContent from "../shared/emptyContent/EmptyContent";
+import { useEffect } from "react";
+import { notFound, useRouter } from "next/navigation";
 const SingleArticle = ({ articleID, t, lang }) => {
   const [
     singleArticleData,
@@ -11,6 +13,11 @@ const SingleArticle = ({ articleID, t, lang }) => {
     articleCardRef,
     isArabic,
   ] = useSingleArticleHook(articleID, lang);
+  useEffect(() => {
+    if (singleArticleData == undefined) {
+        notFound();
+    }
+  }, [singleArticleData]);
   if (isLoading) return <Loading />;
   if (isError) return <div>error: {error}</div>;
   return (
