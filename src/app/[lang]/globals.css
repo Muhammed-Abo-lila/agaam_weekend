@@ -166,8 +166,31 @@ div[data-f-id="pdf"],
 article p:last-child {
   visibility: hidden !important;
 }
-
-.article-card img{
+/* start single article style */
+.article-card img {
   object-fit: cover;
-   max-width: 100%;
+  max-width: 100%;
 }
+.article-card iframe {
+  aspect-ratio: 1 / 0.8 !important;
+  height: 615px !important;
+}
+@media screen and (max-width: 603px) {
+  .article-card iframe {
+    height: 530px !important;
+  }
+}
+@media screen and (max-width: 508px) {
+  .article-card iframe {
+    height: 546px !important;
+  }
+}
+
+@media screen and (max-width: 423px) {
+  .article-card iframe {
+    aspect-ratio: 1 / 1.31 !important;
+    height: auto !important;
+  }
+}
+/* end single article style */
+
