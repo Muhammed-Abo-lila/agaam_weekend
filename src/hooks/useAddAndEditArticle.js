@@ -14,7 +14,6 @@ const useAddAndEditArticle = (type, articleID,backFn) => {
     article_data_en: "",
     article_data_ar: "",
     meta_data_image_url: "",
-    article_number: "",
   });
   // get single article
   const [singleArticleData] = useSingleArticleHook(type == "edit" && articleID);
@@ -29,7 +28,6 @@ const useAddAndEditArticle = (type, articleID,backFn) => {
       article_data_en: singleArticleData?.article_data_en,
       article_data_ar: singleArticleData?.article_data_ar,
       meta_data_image_url: singleArticleData?.meta_data_image_url,
-      article_number: singleArticleData?.article_number,
     });
   }, [singleArticleData]);
   // collect data onChange it
@@ -53,7 +51,6 @@ const useAddAndEditArticle = (type, articleID,backFn) => {
         article_data_en: payload?.article_data_en,
         article_data_ar: payload?.article_data_ar,
         meta_data_image_url: payload?.meta_data_image_url,
-        article_number: payload?.article_number,
       };
       if (type == "edit") {
         return fetchToUpdateData("articals", formData, articleID);
@@ -77,7 +74,6 @@ const useAddAndEditArticle = (type, articleID,backFn) => {
           article_data_en: "",
           article_data_ar: "",
           meta_data_image_url: "",
-          article_number: "",
         });
         queryClient.invalidateQueries(["articles"]);
       }

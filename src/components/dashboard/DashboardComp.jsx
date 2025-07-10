@@ -9,6 +9,7 @@ import { useState } from "react";
 import PreviewComp from "./previewComp/PreviewComp";
 import FloaraTextEditor from "./floraTextEditor/FloraTextEditor";
 import useAddAndEditArticle from "@/hooks/useAddAndEditArticle";
+import EmptyContent from "../shared/emptyContent/EmptyContent";
 const DashboardComp = ({ t, lang }) => {
   const tabsData = [{ name: "add" }, { name: "edit" }];
   const [activeTab, setActiveTab] = useState("add");
@@ -16,8 +17,6 @@ const DashboardComp = ({ t, lang }) => {
   const [data, collectData, handleSubmit, addAndUpdateMutation] =
     useAddAndEditArticle("add");
   const [articlesData] = useHomeHook();
-  console.log("articlesData============>",articlesData);
-  
   if (addAndUpdateMutation?.isPending) return <Loading />;
   return (
     <section>
@@ -94,15 +93,7 @@ const DashboardComp = ({ t, lang }) => {
               name="meta_data_image_url"
               value={data?.meta_data_image_url}
               type="url"
-              classes="col-6"
-            />
-            <DashboardInput
-              placeholder="article number"
-              fn={collectData}
-              name="article_number"
-              value={data?.article_number}
-              type="text"
-              classes="col-6"
+              classes="col-12"
             />
             <FloaraTextEditor
               fn={collectData}
@@ -118,27 +109,32 @@ const DashboardComp = ({ t, lang }) => {
               type="ar"
               placeholder="أدخل محتوي المقال بالعربي..."
             />
-            <div className="col-12 mb-3">
+            <div className="col-12 text-center mb-3">
               <Button text={t.submit} type="submit" />
             </div>
-            <div className="col-12">
+            <div className="col-12 text-center">
               <Button text={t.preview} fn={() => setShowPreviewPopup(true)} />
             </div>
           </form>
         )}
-
-        {activeTab == "edit" && articlesData && articlesData?.length > 0 && (
-          <div className="row g-2 m-0">
-            {articlesData?.map((article) => (
-              <ArticleCard
-                key={article?.id}
-                article={article}
-                t={t}
-                lang={lang}
-                type="dashboard"
-              />
-            ))}
-          </div>
+        {activeTab == "edit" && (
+          <>
+            {articlesData && articlesData?.length > 0 ? (
+              <div className="row g-2 m-0">
+                {articlesData?.map((article) => (
+                  <ArticleCard
+                    key={article?.id}
+                    article={article}
+                    t={t}
+                    lang={lang}
+                    type="dashboard"
+                  />
+                ))}
+              </div>
+            ) : (
+              <EmptyContent text={t.no_details} />
+            )}
+          </>
         )}
       </div>
       {showPreviewPopup && (

@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchToGetData } from "../helpers/fetcher";
-import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
-import Loading from "@/components/shared/loading/Loading";
 const useSingleArticleHook = (articleID, lang) => {
   const articleCardRef = useRef();
   const isArabic = lang == "ar";

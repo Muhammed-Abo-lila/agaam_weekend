@@ -1,9 +1,8 @@
 "use client";
 import useSingleArticleHook from "@/hooks/useSingleArticleHook";
-import { useRouter } from "next/navigation";
 import Loading from "../shared/loading/Loading";
-const SingleArticle = ({ articleID, lang }) => {
-  const router = useRouter();
+import EmptyContent from "../shared/emptyContent/EmptyContent";
+const SingleArticle = ({ articleID, t, lang }) => {
   const [
     singleArticleData,
     isLoading,
@@ -13,27 +12,29 @@ const SingleArticle = ({ articleID, lang }) => {
     isArabic,
   ] = useSingleArticleHook(articleID, lang);
   if (isLoading) return <Loading />;
-  if (isError) return <div>error:-{error}</div>;
-  if (isArabic && singleArticleData?.article_data_ar == "") {
-    router.replace(`/${lang}`);
-  }
-  if (!isArabic && singleArticleData?.article_data_en == "") {
-    router.replace(`/${lang}`);
-  }
+  if (isError) return <div>error: {error}</div>;
   return (
     <>
       {singleArticleData && (
-        <article
-          ref={articleCardRef}
-          className="article-card border-0"
-          dangerouslySetInnerHTML={{
-            __html: isArabic
-              ? singleArticleData?.article_data_ar
-              : singleArticleData?.article_data_en,
-          }}
-        ></article>
+        <>
+          {(isArabic && !singleArticleData?.article_data_ar) ||
+          (!isArabic && !singleArticleData?.article_data_en) ? (
+            <EmptyContent text={t.no_article_lang} />
+          ) : (
+            <article
+              ref={articleCardRef}
+              className="article-card border-0"
+              dangerouslySetInnerHTML={{
+                __html: isArabic
+                  ? singleArticleData?.article_data_ar
+                  : singleArticleData?.article_data_en,
+              }}
+            />
+          )}
+        </>
       )}
     </>
   );
 };
+
 export default SingleArticle;

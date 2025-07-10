@@ -13,7 +13,6 @@ const DashboardInput = ({
     "meta_data_desc_en",
     "meta_data_keywords_en",
     "meta_data_image_url",
-    "article_number",
   ];
 
   return (
