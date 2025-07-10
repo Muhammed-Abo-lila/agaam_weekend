@@ -163,9 +163,9 @@ b {
   height: 2px;
   background-color: #fff;
 }
-.fr-second-toolbar,
+/* .fr-second-toolbar,
 .fr-wrapper div:first-child,
 div[data-f-id="pdf"],
 article p:last-child {
   display: none !important;
-}
+} */
