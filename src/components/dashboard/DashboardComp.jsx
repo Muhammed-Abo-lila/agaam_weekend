@@ -123,10 +123,10 @@ const DashboardComp = ({ t, lang }) => {
               type="ar"
               placeholder="أدخل محتوي المقال بالعربي..."
             />
-            <div className="col-12 text-center mb-3">
+            <div className="offset-1 col-5 text-center mb-3">
               <Button text={t.submit} type="submit" />
             </div>
-            <div className="col-12 text-center">
+            <div className="col-5 text-center">
               <Button text={t.preview} fn={() => setShowPreviewPopup(true)} />
             </div>
           </form>

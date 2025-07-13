@@ -13,6 +13,12 @@ const NavComp = ({ tabsData, t, activeTab, setActiveTab, lang }) => {
                 activeTab == tab.name && "active-tab"
               }`}
               onClick={() => setActiveTab(tab?.name)}
+              style={{
+                width: "120px",
+                marginInlineEnd: "20px",
+                padding: "20px",
+                textAlign: "center",
+              }}
             >
               {t[tab?.name]}
             </li>

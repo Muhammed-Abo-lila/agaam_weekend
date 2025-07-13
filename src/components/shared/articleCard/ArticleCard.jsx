@@ -99,6 +99,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
         <EditLayout
           articleID={article?.id}
           t={t}
+          lang={lang}
           backFn={() => setShowEditPopup(false)}
         />
       )}

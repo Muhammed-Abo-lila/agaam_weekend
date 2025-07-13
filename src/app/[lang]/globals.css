@@ -15,7 +15,7 @@
   --background-opacity: rgba(255, 255, 255, 0.7);
 }
 body {
-  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
 }
@@ -125,7 +125,7 @@ body {
 }
 /* start floara style */
 .fr-wrapper {
-  height: 300px !important;
+  height: 400px !important;
   overflow-y: auto !important;
 }
 .fr-rounded {
@@ -134,6 +134,10 @@ body {
 b {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
+}
+.fr-element{
+  text-align: start !important;
+  direction: inherit;
 }
 .fr-second-toolbar,
 .fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],

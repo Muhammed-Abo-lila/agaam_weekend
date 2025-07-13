@@ -3,9 +3,11 @@ import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/js/plugins.pkgd.min.js";
 import FroalaEditorComponent from "react-froala-wysiwyg";
 const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
+  console.log("type===============>", type);
+
   const config = {
     placeholderText: placeholder,
-    direction: type === "ar" ? "rtl" : "ltr",
+    // direction: type=="en"?"ltr":"rtl",
     paragraphDefaultSelection: type === "ar" ? "R" : "L",
     pluginsEnabled: [
       "fontFamily",
@@ -41,13 +43,13 @@ const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
       "undo",
       "redo",
     ],
-      lineHeights: {
-    '1.0': '1',
-    '1.5': '1.5',
-    '2.0': '2',
-    '2.5': '2.5',
-    '3.0': '3'
-  },
+    lineHeights: {
+      "1.0": "1",
+      1.5: "1.5",
+      "2.0": "2",
+      2.5: "2.5",
+      "3.0": "3",
+    },
     videoInsertButtons: ["videoByURL", "videoEmbed"],
     htmlAllowedTags: ["iframe", ".*"],
     htmlAllowedAttrs: [
@@ -58,7 +60,8 @@ const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
       "allowfullscreen",
       ".*",
     ],
-    fontFamilySelection: true,
+    colorDefaultSelection: "red",
+    fontFamilyDefaultSelection: "'IBM Plex Sans Arabic', sans-serif",
     fontFamily: {
       "Arial,Helvetica,sans-serif": "Arial",
       "Georgia,serif": "Georgia",
@@ -67,6 +70,7 @@ const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
       "Times New Roman,Times,serif": "Times New Roman",
       "Verdana,Geneva,sans-serif": "Verdana",
       "Cairo,sans-serif": "Cairo",
+      "'IBM Plex Sans Arabic', sans-serif": "IBM Plex Sans Arabic",
     },
     fontSizeSelection: true,
     fontSize: ["8", "10", "12", "14", "16", "18", "24", "36"],

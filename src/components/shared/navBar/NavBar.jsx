@@ -25,7 +25,7 @@ const NavBar = ({ lang,t }) => {
             <span style={{ color: "var(--black-color)" }}>{t.weekend}</span>
           </h1>
         </Link>
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-4">
           <ChangeLangComp lang={lang} />
           <span style={{ cursor: "pointer" }}>
             <ThemeToggle />
