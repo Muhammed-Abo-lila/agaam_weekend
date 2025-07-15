@@ -135,10 +135,10 @@ b {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
 }
-/* .fr-element{
-  text-align: start !important;
-  direction: inherit;
-} */
+.fr-element{
+  text-align: justify !important;
+  /* direction: inherit; */
+}
 .fr-second-toolbar,
 .fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
 div[data-f-id="pdf"],
