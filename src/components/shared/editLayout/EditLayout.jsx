@@ -22,6 +22,8 @@ const EditLayout = ({ articleID, t, lang, backFn }) => {
           style={{
             backgroundColor: "var(--white-color)",
             maxWidth: "var(--section-max-width)",
+            maxHeight:"95%",
+            overflow:"auto",
             direction: "ltr",
           }}
           onSubmit={handleSubmit}
