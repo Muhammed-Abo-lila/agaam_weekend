@@ -145,8 +145,10 @@ div[data-f-id="pdf"],
 p[data-f-id="pbf"],
 article p:last-child ,
 .fr-wrapper div:first-child{
-  /* visibility: hidden !important; */
   display: none;
+}
+.fr-placeholder{
+  margin-top: 0px !important;
 }
 /* custom classes */
 .text-black {
