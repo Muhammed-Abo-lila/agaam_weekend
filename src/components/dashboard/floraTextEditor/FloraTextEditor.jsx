@@ -3,11 +3,8 @@ import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/js/plugins.pkgd.min.js";
 import FroalaEditorComponent from "react-froala-wysiwyg";
 const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
-  console.log("type===============>", type);
-
   const config = {
     placeholderText: placeholder,
-    // direction: type=="en"?"ltr":"rtl",
     paragraphDefaultSelection: type === "ar" ? "R" : "L",
     pluginsEnabled: [
       "fontFamily",
@@ -60,7 +57,6 @@ const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
       "allowfullscreen",
       ".*",
     ],
-    colorDefaultSelection: "red",
     fontFamilyDefaultSelection: "'IBM Plex Sans Arabic', sans-serif",
     fontFamily: {
       "Arial,Helvetica,sans-serif": "Arial",
