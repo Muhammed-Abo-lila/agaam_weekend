@@ -150,6 +150,7 @@ article p:last-child ,
  .default-styles-2,
  .default-styles-2 .fr-placeholder{
   direction: rtl !important;
+  text-align: end !important;
  }
 .fr-placeholder{
   margin-top: 0px !important;
