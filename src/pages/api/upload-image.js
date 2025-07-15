@@ -1,3 +1,5 @@
+// src/pages/api/upload-image.js
+
 import formidable from 'formidable';
 import fs from 'fs';
 import path from 'path';
@@ -9,6 +11,10 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
   const form = new formidable.IncomingForm();
   const uploadFolder = path.join(process.cwd(), '/public/uploads');
 
@@ -19,12 +25,18 @@ export default async function handler(req, res) {
   form.uploadDir = uploadFolder;
   form.keepExtensions = true;
 
-  form.parse(req, async (err, fields, files) => {
-    if (err) return res.status(500).json({ error: 'Upload failed' });
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      console.error('Upload Error:', err);
+      return res.status(500).json({ error: 'Upload failed' });
+    }
 
-    const file = files.image[0]; // Froala uses "image" field
+    const file = files.image?.[0];
+    if (!file) {
+      return res.status(400).json({ error: 'No image file provided' });
+    }
+
     const fileName = path.basename(file.filepath);
-
     return res.status(200).json({ link: `/uploads/${fileName}` });
   });
 }
