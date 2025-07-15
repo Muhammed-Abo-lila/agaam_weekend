@@ -152,7 +152,7 @@ article p:last-child ,
  }
  .default-styles-2 .fr-placeholder{
   direction: rtl !important;
-  /* text-align: start !important; */
+  text-align: start !important;
  }
 .fr-placeholder{
   margin-top: 0px !important;
