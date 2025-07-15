@@ -137,7 +137,7 @@ b {
 }
 .fr-element{
   text-align: justify !important;
-  /* direction: inherit; */
+  direction: rtl;
 }
 .fr-second-toolbar,
 .fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
