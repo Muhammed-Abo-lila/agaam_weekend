@@ -142,7 +142,7 @@ b {
 .fr-second-toolbar,
 .fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
 div[data-f-id="pdf"],
-p[data-f-id="pdf"],
+p[data-f-id="pbf"],
 article p:last-child {
   visibility: hidden !important;
 }
