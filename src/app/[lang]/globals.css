@@ -139,19 +139,12 @@ b {
   text-align: justify !important;
   /* direction: rtl; */
 }
-/* .fr-second-toolbar,
-.fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
-div[data-f-id="pdf"],
-p[data-f-id="pbf"],
-article p:last-child {
-  display: none;
-} */
  .fr-second-toolbar,
 .fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
 div[data-f-id="pdf"],
 p[data-f-id="pbf"],
 article p:last-child {
-  display: none !important;
+  visibility: hidden !important;
 }
  .default-styles-2{
   direction: rtl !important;
