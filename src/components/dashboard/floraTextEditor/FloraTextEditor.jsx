@@ -4,10 +4,13 @@ import "froala-editor/js/plugins.pkgd.min.js";
 import "froala-editor/js/plugins/image.min.js";
 import FroalaEditorComponent from "react-froala-wysiwyg";
 const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
+  const imageUploadURL = typeof window !== "undefined"
+  ? window.location.origin.replace(/\/en$/, "") + "/api/upload-image"
+  : "/api/upload-image";
   const config = {
     placeholderText: placeholder,
     imageUpload: true,
-    imageUploadURL: "https://agaam-weekend.vercel.app/api/upload-image",
+    imageUploadURL: imageUploadURL,
     imageAllowedTypes: ["jpeg", "jpg", "png"],
     // direction: type=="en"?"ltr":"rtl",
     paragraphDefaultSelection: type === "ar" ? "R" : "L",
