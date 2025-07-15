@@ -144,7 +144,8 @@ b {
 div[data-f-id="pdf"],
 p[data-f-id="pbf"],
 article p:last-child {
-  visibility: hidden !important;
+  /* visibility: hidden !important; */
+  display: none;
 }
 /* custom classes */
 .text-black {
