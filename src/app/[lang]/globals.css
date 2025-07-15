@@ -151,7 +151,8 @@ article p:last-child ,
   direction: rtl !important;
  }
  .default-styles-2 .fr-placeholder{
-  text-align: start !important;
+  direction: rtl !important;
+  /* text-align: start !important; */
  }
 .fr-placeholder{
   margin-top: 0px !important;
