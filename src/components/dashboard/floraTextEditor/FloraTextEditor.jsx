@@ -5,7 +5,8 @@ import FroalaEditorComponent from "react-froala-wysiwyg";
 const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
   const config = {
     placeholderText: placeholder,
-    // paragraphDefaultSelection: type === "ar" ? "R" : "L",
+    direction: type=="en"?"ltr":"rtl",
+    paragraphDefaultSelection: type === "ar" ? "R" : "L",
     pluginsEnabled: [
       "fontFamily",
       "fontSize",
