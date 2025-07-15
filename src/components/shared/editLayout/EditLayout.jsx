@@ -1,3 +1,4 @@
+"use client"
 import DashboardInput from "../../dashboard/dashboardInput/DashboardInput";
 import LayoutContainer from "../layoutContainer/LayoutContainer";
 import Button from "../button/Button";

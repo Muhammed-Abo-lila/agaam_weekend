@@ -78,7 +78,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
                   className="text-decoration-none"
                   href={`/${lang}/article/${article?.id}`}
                 >
-                  <Button text={t.more} />
+                  <Button text={t.more} type="submit"/>
                 </Link>
               </div>
             </div>

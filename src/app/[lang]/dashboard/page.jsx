@@ -5,7 +5,7 @@ export const metadata = {
   description: "dashboard description",
 };
 const DashboardPage = async ({ params }) => {
-  const lang = await params?.lang;
+  const {lang} = await params;
   const t = await getDictionary(lang);
   return <DashboardComp t={t} lang={lang} />;
 };

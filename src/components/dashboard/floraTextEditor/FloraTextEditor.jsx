@@ -1,9 +1,17 @@
+"use client"
 import "froala-editor/css/froala_style.min.css";
 import "froala-editor/css/froala_editor.pkgd.min.css";
-import "froala-editor/js/plugins.pkgd.min.js";
-import "froala-editor/js/plugins/image.min.js";
-import FroalaEditorComponent from "react-froala-wysiwyg";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+const FroalaEditorComponent = dynamic(() => import("react-froala-wysiwyg"), {
+  ssr: false,
+});
 const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
+    useEffect(() => {
+    // Only import Froala JS plugins on the client
+    import("froala-editor/js/plugins.pkgd.min.js");
+    import("froala-editor/js/plugins/image.min.js");
+  }, []);
   const imageUploadURL = typeof window !== "undefined"
   ? window.location.origin.replace(/\/en$/, "") + "/api/upload-image"
   : "/api/upload-image";
@@ -15,7 +23,7 @@ const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
     // direction: type=="en"?"ltr":"rtl",
     paragraphDefaultSelection: type === "ar" ? "R" : "L",
     pluginsEnabled: [
-      "fontFamily",
+      // "fontFamily",
       "fontSize",
       "align",
       "lineHeight",
@@ -30,7 +38,7 @@ const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
       "video",
     ],
     toolbarButtons: [
-      "fontFamily",
+      // "fontFamily",
       "fontSize",
       "bold",
       "italic",
