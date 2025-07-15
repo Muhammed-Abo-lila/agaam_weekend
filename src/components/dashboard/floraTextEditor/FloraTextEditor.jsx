@@ -1,10 +1,14 @@
 import "froala-editor/css/froala_style.min.css";
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/js/plugins/image.min.js";
 import FroalaEditorComponent from "react-froala-wysiwyg";
 const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
   const config = {
     placeholderText: placeholder,
+    imageUpload: true,
+    imageUploadURL: "https://agaam-weekend.vercel.app/api/upload-image",
+    imageAllowedTypes: ["jpeg", "jpg", "png"],
     // direction: type=="en"?"ltr":"rtl",
     paragraphDefaultSelection: type === "ar" ? "R" : "L",
     pluginsEnabled: [
