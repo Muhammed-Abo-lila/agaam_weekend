@@ -14,11 +14,11 @@ export default function ThemeToggle() {
   return (
     <>
       {theme === "dark" ? (
-        <IoMoon onClick={() => setTheme(theme === "dark" ? "light" : "dark")} />
-      ) : (
         <IoSunnyOutline
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         />
+      ) : (
+        <IoMoon onClick={() => setTheme(theme === "dark" ? "light" : "dark")} />
       )}
     </>
   );

@@ -4,19 +4,23 @@
   --font-size-base: 1rem;
   --identity-color: #ee7b0b;
   --background-opacity: rgba(0, 0, 0, 0.7);
+  --bg_color: #FAF7F3;
   --white-color: #fff;
   --black-color: #000;
-  --section-max-width: 1150px;
+  --links-color: #000;
+  --section-max-width: 1050px;
   --single-article-max-width: 800px;
 }
 .dark {
+  --bg_color: #121212;
   --white-color: #000;
   --black-color: #fff;
+  --links-color: #90caf9;
   --background-opacity: rgba(255, 255, 255, 0.7);
 }
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif !important;
-  background-color: var(--white-color) !important;
+  background-color: var(--bg_color) !important;
   color: var(--black-color) !important;
 }
 .form-control:focus {
@@ -135,23 +139,23 @@ b {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
 }
-.fr-element{
+.fr-element {
   text-align: justify !important;
 }
- .fr-second-toolbar,
+.fr-second-toolbar,
 .fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],
 div[data-f-id="pdf"],
 p[data-f-id="pbf"] {
   visibility: hidden !important;
 }
- .default-styles-2{
+.default-styles-2 {
   direction: rtl !important;
- }
- body .default-styles-2 .fr-placeholder{
+}
+body .default-styles-2 .fr-placeholder {
   direction: rtl !important;
   text-align: end !important;
- }
-.fr-placeholder{
+}
+.fr-placeholder {
   margin-top: 0px !important;
 }
 /* custom classes */
@@ -181,34 +185,6 @@ p[data-f-id="pbf"] {
   background-color: white;
 }
 
-/* start single article style */
-.article-card img {
-  object-fit: cover;
-  max-width: 100%;
-}
-.article-card iframe {
-  aspect-ratio: 1 / 0.8 !important;
-  height: 615px !important;
-}
-@media screen and (max-width: 603px) {
-  .article-card iframe {
-    height: 530px !important;
-  }
-}
-@media screen and (max-width: 508px) {
-  .article-card iframe {
-    height: 546px !important;
-  }
-}
-
-@media screen and (max-width: 423px) {
-  .article-card iframe {
-    aspect-ratio: 1 / 1.31 !important;
-    height: auto !important;
-  }
-}
-/* end single article style */
-
 /* start custom button comp style */
 .button {
   min-width: 50px;
@@ -225,3 +201,18 @@ p[data-f-id="pbf"] {
   border: 1px solid var(--identity-color);
 }
 /* end custom button comp style */
+
+.logoAr .argaam-main-logo{
+  max-width:200px !important;
+  height: auto !important;
+}
+
+
+/* 
+bootstrap break points
+sm >=576px
+md >=768px
+lg >=992px
+xl >=1200px
+xxl >=1400px
+*/
