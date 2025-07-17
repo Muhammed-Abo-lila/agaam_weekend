@@ -113,14 +113,14 @@ const DashboardComp = ({ t, lang }) => {
               value={data?.article_data_en}
               name="article_data_en"
               type="en"
-              placeholder="Write your content here..."
+              // placeholder="Write your content here..."
             />
             <FloaraTextEditor
               fn={collectData}
               value={data?.article_data_ar}
               name="article_data_ar"
               type="ar"
-              placeholder="أدخل محتوي المقال بالعربي..."
+              // placeholder="أدخل محتوي المقال بالعربي..."
             />
             <div className="offset-1 col-5 text-center mb-3">
               <Button text={t.submit} type="submit" />
