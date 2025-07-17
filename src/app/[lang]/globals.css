@@ -141,6 +141,7 @@ b {
 }
 .fr-element {
   text-align: justify !important;
+  height: 100%;
 }
 .fr-second-toolbar,
 .fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"],

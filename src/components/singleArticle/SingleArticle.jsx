@@ -3,11 +3,11 @@ import useSingleArticleHook from "@/hooks/useSingleArticleHook";
 import Loading from "../shared/loading/Loading";
 import EmptyContent from "../shared/emptyContent/EmptyContent";
 import { notFound } from "next/navigation";
-import "./singleArticle.css";
 import Image from "next/image";
 import Link from "next/link";
 import ArticleFooterCard from "./subSections/articleFooterCard/ArticleFooterCard";
 import useHomeHook from "@/hooks/useHomeHook";
+import "./singleArticle.css";
 const SingleArticle = ({ articleID, t, lang }) => {
   const [
     singleArticleData,
@@ -110,7 +110,6 @@ const SingleArticle = ({ articleID, t, lang }) => {
       alert("Failed to copy link.");
     }
   };
-
   return (
     <div className="single-article">
       {singleArticleData && (
