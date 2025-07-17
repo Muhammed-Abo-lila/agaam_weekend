@@ -16,26 +16,28 @@ const HomeComp = ({ t, lang }) => {
       >
         {articlesData && articlesData?.length > 0 ? (
           <div className="row g-2">
-            {articlesData?.map((article) => {
-              const isValidArticle =
-                (isArabic &&
-                  article?.article_data_ar &&
-                  article?.meta_data_title_ar &&
-                  article?.meta_data_desc_ar) ||
-                (!isArabic &&
-                  article?.article_data_en &&
-                  article?.meta_data_title_en &&
-                  article?.meta_data_desc_en);
+            {articlesData
+              ?.sort((a, b) => a.article_number - b.article_number)
+              ?.map((article) => {
+                const isValidArticle =
+                  (isArabic &&
+                    article?.article_data_ar &&
+                    article?.meta_data_title_ar &&
+                    article?.meta_data_desc_ar) ||
+                  (!isArabic &&
+                    article?.article_data_en &&
+                    article?.meta_data_title_en &&
+                    article?.meta_data_desc_en);
 
-              return isValidArticle ? (
-                <ArticleCard
-                  key={article.id}
-                  article={article}
-                  t={t}
-                  lang={lang}
-                />
-              ) : null;
-            })}
+                return isValidArticle ? (
+                  <ArticleCard
+                    key={article.id}
+                    article={article}
+                    t={t}
+                    lang={lang}
+                  />
+                ) : null;
+              })}
           </div>
         ) : (
           <EmptyContent text={t.no_details} />

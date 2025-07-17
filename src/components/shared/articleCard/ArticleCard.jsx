@@ -21,7 +21,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
   return (
     <div className="col-sm-6">
       <div
-        className="card h-100 position-relative overflow-hidden bg-transparent"
+        className="card h-100 position-relative overflow-hidden "
         style={{ minHeight: "180px" }}
       >
         <span
