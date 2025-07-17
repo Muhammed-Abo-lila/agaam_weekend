@@ -20,14 +20,27 @@ const ArticleCard = ({ article, t, lang, type }) => {
     : article?.meta_data_desc_en;
   return (
     <div className="col-sm-6">
-      <div className="card h-100 position-relative overflow-hidden" style={{ minHeight: "160px" }}>
-        <span className="article-number position-absolute top-0 end-0 d-flex justify-content-center align-items-center bg-black" style={{width:"30px",height:"30px",color:"var(--identity-color)"}}>{article?.article_number}</span>
+      <div
+        className="card h-100 position-relative overflow-hidden bg-transparent"
+        style={{ minHeight: "180px" }}
+      >
+        <span
+          className="article-number position-absolute top-0 end-0 d-flex justify-content-center align-items-center bg-black"
+          style={{
+            width: "25px",
+            height: "25px",
+            color: "var(--identity-color)",
+            fontSize: "13px",
+          }}
+        >
+          {article?.article_number}
+        </span>
         <div className="row g-0 flex-column flex-lg-row h-100">
           <div className="col col-lg-4">
             <img
               src={article?.meta_data_image_url}
               alt={title}
-              className="card-img-top h-100"
+              className="card-img-top h-100 rounded-0"
               style={{ objectFit: "cover" }}
             />
           </div>
@@ -40,7 +53,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
                     fontSize: "calc(var(--font-size-base) + 0.1rem)",
                   }}
                 >
-                  {title?.length > 35 ? title?.slice(0, 35) + "..." : title}
+                  {title?.length > 35 ? title?.slice(0, 33) + "..." : title}
                 </h5>
                 <p
                   className="card-text mt-2"
@@ -53,7 +66,7 @@ const ArticleCard = ({ article, t, lang, type }) => {
                 </p>
               </div>
               <div
-                className="artical-footer d-flex justify-content-between align-items-center w-100 mt-3"
+                className="artical-footer d-flex justify-content-between flex-column flex-md-row align-items-center w-100 mt-3"
                 style={{
                   fontSize: "calc(var(--font-size-base) - 0.2rem)",
                 }}
@@ -64,22 +77,24 @@ const ArticleCard = ({ article, t, lang, type }) => {
                     article?.article_data_en &&
                     "available in english"}
                 </span>
-                {type == "dashboard" && (
-                  <div className="d-flex justify-content-center align-items-center gap-3 pointer">
-                    <Button text={t.edit} fn={() => setShowEditPopup(true)} />
-                    <Button
-                      text={t.delete}
-                      fn={() => setShowDeletePopup(true)}
-                    />
-                  </div>
-                )}
-                <Link
-                  rel="preload"
-                  className="text-decoration-none"
-                  href={`/${lang}/article/${article?.id}`}
-                >
-                  <Button text={t.more} type="submit"/>
-                </Link>
+                <div className="d-flex gap-2 mt-2">
+                  {type == "dashboard" && (
+                    <>
+                      <Button text={t.edit} fn={() => setShowEditPopup(true)} />
+                      <Button
+                        text={t.delete}
+                        fn={() => setShowDeletePopup(true)}
+                      />
+                    </>
+                  )}
+                  <Link
+                    rel="preload"
+                    className="text-decoration-none"
+                    href={`/${lang}/article/${article?.id}`}
+                  >
+                    <Button text={t.more} type="submit" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

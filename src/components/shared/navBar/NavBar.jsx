@@ -32,13 +32,7 @@ const NavBar = ({ lang }) => {
       style={{ maxWidth: containerMaxWidth }}
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
-      <header
-        className="d-flex justify-content-between align-items-center border-1 mb-3 pb-2"
-        style={{
-          borderBottomStyle: "dotted",
-          borderColor: "var(--black-color)",
-        }}
-      >
+      <header className="d-flex justify-content-between align-items-center border-1 mb-3 pb-2 border-dashed ">
         <Link href={`/${lang}`} className="text-decoration-none">
           <h1 className="d-flex align-items-center gap-2 fs-4 mb-0">
             <Image

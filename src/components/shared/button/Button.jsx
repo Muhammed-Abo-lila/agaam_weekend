@@ -5,7 +5,7 @@ const Button = ({ text, type, fn }) => {
         <button
           role="button"
           className="button btn text-capitalize m-auto"
-          style={{width:"98%"}}
+          style={{ width: "98%", minWidth: "70px" }}
         >
           {text}
         </button>
@@ -13,7 +13,7 @@ const Button = ({ text, type, fn }) => {
         <div
           role="button"
           className="button btn text-capitalize m-auto"
-          style={{width:"98%"}}
+          style={{ width: "98%", minWidth: "70px" }}
           onClick={() => fn()}
         >
           {text}

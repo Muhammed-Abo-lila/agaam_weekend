@@ -8,7 +8,6 @@ const FroalaEditorComponent = dynamic(() => import("react-froala-wysiwyg"), {
 });
 const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
   useEffect(() => {
-    // Only import Froala JS plugins on the client
     import("froala-editor/js/plugins.pkgd.min.js");
     import("froala-editor/js/plugins/image.min.js");
   }, []);
@@ -97,12 +96,11 @@ const FloaraTextEditor = ({ fn, value, name, placeholder, type }) => {
     },
     htmlExecuteScripts: true,
   };
-
   const handleChange = (content) => {
     fn(name, content);
   };
   return (
-    <div className="col-6 mb-3">
+    <div className="col-12 col-md-6 mb-3">
       <FroalaEditorComponent
         config={config}
         tag="textarea"

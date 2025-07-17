@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import "./singleArticle.css";
 import Image from "next/image";
 import Link from "next/link";
+import ArticleFooterCard from "./subSections/articleFooterCard/ArticleFooterCard";
+import useHomeHook from "@/hooks/useHomeHook";
 const SingleArticle = ({ articleID, t, lang }) => {
   const [
     singleArticleData,
@@ -15,6 +17,7 @@ const SingleArticle = ({ articleID, t, lang }) => {
     articleCardRef,
     isArabic,
   ] = useSingleArticleHook(articleID, lang);
+  const [articlesData] = useHomeHook();
   if (!isLoading && singleArticleData == undefined) {
     notFound();
   }
@@ -78,10 +81,10 @@ const SingleArticle = ({ articleID, t, lang }) => {
     },
     {
       to: `mailto:?subject=Argaam Weekend |${
-        lang == "ar"
+        isArabic
           ? singleArticleData?.meta_data_title_ar
           : singleArticleData?.meta_data_title_en
-      }&body=${encodeURIComponent(articleUrl)}`,
+      }&body=Check this out:${encodeURIComponent(articleUrl)}`,
       title: "Share on email",
       logo: (
         <svg
@@ -107,6 +110,7 @@ const SingleArticle = ({ articleID, t, lang }) => {
       alert("Failed to copy link.");
     }
   };
+
   return (
     <div className="single-article">
       {singleArticleData && (
@@ -115,117 +119,205 @@ const SingleArticle = ({ articleID, t, lang }) => {
           (!isArabic && !singleArticleData?.article_data_en) ? (
             <EmptyContent text={t.no_article_lang} />
           ) : (
-            <article className="article-card border-0">
-              <div className="article-head">
-                <div className="image-container">
-                  <Image
-                    src={singleArticleData?.meta_data_image_url}
-                    alt={
-                      lang == "ar"
-                        ? singleArticleData?.article_data_ar
-                        : singleArticleData?.article_data_en
-                    }
-                    fill
-                    quality={100}
-                    property="1"
-                  />
-                  <div className="image-layer">
-                    <h2>
-                      {lang == "ar"
-                        ? singleArticleData?.meta_data_title_ar
-                        : singleArticleData?.meta_data_title_en}
-                    </h2>
+            <>
+              <article className="article-card border-dashed">
+                <div className="article-head border-dashed">
+                  <div className="image-container">
+                    <Image
+                      src={singleArticleData?.meta_data_image_url}
+                      alt={
+                        isArabic
+                          ? singleArticleData?.article_data_ar
+                          : singleArticleData?.article_data_en
+                      }
+                      fill
+                      quality={100}
+                      property="1"
+                    />
+                    <div className="image-layer">
+                      <h2>
+                        {isArabic
+                          ? singleArticleData?.meta_data_title_ar
+                          : singleArticleData?.meta_data_title_en}
+                      </h2>
+                    </div>
+                  </div>
+                  <div
+                    className="footer d-flex justify-content-between align-items-center p-2"
+                    dir="ltr"
+                  >
+                    <div className="article-links d-flex justify-content-center align-items-center">
+                      <p className="text-capitalize mb-0 me-2">share:</p>
+                      <ul className="list-unstyled d-flex justify-content-center align-items-center gap-2 mb-0">
+                        {linksData &&
+                          linksData?.map((link, idx) => (
+                            <li key={idx}>
+                              <Link
+                                href={link?.to}
+                                title={link?.title}
+                                target="_blank"
+                              >
+                                {link?.logo}
+                              </Link>
+                            </li>
+                          ))}
+
+                        <li onClick={copyLink} className="cursor-pointer">
+                          <svg
+                            fill="none"
+                            height="18px"
+                            stroke="#ffffff"
+                            strokeWidth="0.00016"
+                            transform="rotate(45)"
+                            viewBox="0 0 16.00 16.00"
+                            width="30px"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                            <g
+                              id="SVGRepo_tracerCarrier"
+                              stroke="#ffffff"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="0.48"
+                            >
+                              <path
+                                d="M7.05025 1.53553C8.03344 0.552348 9.36692 0 10.7574 0C13.6528 0 16 2.34721 16 5.24264C16 6.63308 15.4477 7.96656 14.4645 8.94975L12.4142 11L11 9.58579L13.0503 7.53553C13.6584 6.92742 14 6.10264 14 5.24264C14 3.45178 12.5482 2 10.7574 2C9.89736 2 9.07258 2.34163 8.46447 2.94975L6.41421 5L5 3.58579L7.05025 1.53553Z"
+                                fill="#000000"
+                              ></path>
+                              <path
+                                d="M7.53553 13.0503L9.58579 11L11 12.4142L8.94975 14.4645C7.96656 15.4477 6.63308 16 5.24264 16C2.34721 16 0 13.6528 0 10.7574C0 9.36693 0.552347 8.03344 1.53553 7.05025L3.58579 5L5 6.41421L2.94975 8.46447C2.34163 9.07258 2 9.89736 2 10.7574C2 12.5482 3.45178 14 5.24264 14C6.10264 14 6.92742 13.6584 7.53553 13.0503Z"
+                                fill="#000000"
+                              ></path>
+                              <path
+                                d="M5.70711 11.7071L11.7071 5.70711L10.2929 4.29289L4.29289 10.2929L5.70711 11.7071Z"
+                                fill="#000000"
+                              ></path>
+                            </g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M7.05025 1.53553C8.03344 0.552348 9.36692 0 10.7574 0C13.6528 0 16 2.34721 16 5.24264C16 6.63308 15.4477 7.96656 14.4645 8.94975L12.4142 11L11 9.58579L13.0503 7.53553C13.6584 6.92742 14 6.10264 14 5.24264C14 3.45178 12.5482 2 10.7574 2C9.89736 2 9.07258 2.34163 8.46447 2.94975L6.41421 5L5 3.58579L7.05025 1.53553Z"
+                                fill="#000000"
+                              ></path>
+                              <path
+                                d="M7.53553 13.0503L9.58579 11L11 12.4142L8.94975 14.4645C7.96656 15.4477 6.63308 16 5.24264 16C2.34721 16 0 13.6528 0 10.7574C0 9.36693 0.552347 8.03344 1.53553 7.05025L3.58579 5L5 6.41421L2.94975 8.46447C2.34163 9.07258 2 9.89736 2 10.7574C2 12.5482 3.45178 14 5.24264 14C6.10264 14 6.92742 13.6584 7.53553 13.0503Z"
+                                fill="#000000"
+                              ></path>
+                              <path
+                                d="M5.70711 11.7071L11.7071 5.70711L10.2929 4.29289L4.29289 10.2929L5.70711 11.7071Z"
+                                fill="#000000"
+                              ></path>
+                            </g>
+                          </svg>
+                        </li>
+                      </ul>
+                    </div>
+                    <Link
+                      href="https://www.argaam.com/en/newsletters"
+                      target="_blank"
+                      className="text-capitalize"
+                      style={{ color: "var(--links-color)" }}
+                    >
+                      subscribe
+                    </Link>
                   </div>
                 </div>
                 <div
-                  className="footer d-flex justify-content-between align-items-center p-2"
-                  dir="ltr"
-                >
-                  <div className="article-links d-flex justify-content-center align-items-center">
-                    <p className="text-capitalize mb-0 me-2">share:</p>
-                    <ul className="list-unstyled d-flex justify-content-center align-items-center gap-2 mb-0">
-                      {linksData &&
-                        linksData?.map((link, idx) => (
-                          <li key={idx}>
-                            <Link
-                              href={link?.to}
-                              title={link?.title}
-                              target="_blank"
-                            >
-                              {link?.logo}
-                            </Link>
-                          </li>
-                        ))}
-
-                      <li onClick={copyLink} className="cursor-pointer">
-                        <svg
-                          fill="none"
-                          height="18px"
-                          stroke="#ffffff"
-                          strokeWidth="0.00016"
-                          transform="rotate(45)"
-                          viewBox="0 0 16.00 16.00"
-                          width="30px"
-                          xmlns="http://www.w3.org/2000/svg"
+                  ref={articleCardRef}
+                  dangerouslySetInnerHTML={{
+                    __html: isArabic
+                      ? singleArticleData?.article_data_ar
+                      : singleArticleData?.article_data_en,
+                  }}
+                />
+              </article>
+              {articlesData && articlesData?.length > 0 && (
+                <div className="single-article-footer">
+                  <h4 className="border-dashed text-capitalize py-3 fs-5">
+                    {t.more_this_week}
+                  </h4>
+                  {articlesData?.map((article, idx) => (
+                    <ArticleFooterCard
+                      key={idx}
+                      isArabic={isArabic}
+                      t={t}
+                      article={article}
+                    />
+                  ))}
+                  <div className="links text-center py-3 border-dashed">
+                    <div className="social d-flex justify-content-center align-items-center gap-4">
+                      <Link href="https://x.com/ArgaamPlus" target="_blank">
+                        <Image
+                          src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/c9c9fb8c-6cf8-4758-9cd8-0eb9ecef280d.png"
+                          width={30}
+                          height={30}
+                          alt="argaam x"
+                        />
+                      </Link>
+                      <Link
+                        href="https://www.facebook.com/argaamplus/"
+                        target="_blank"
+                      >
+                        <Image
+                          src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/24b84e22-8d38-4d6c-98db-80812ca4de5f.png"
+                          width={30}
+                          height={30}
+                          alt="argaam facebook"
+                        />
+                      </Link>
+                      <Link
+                        href="https://www.linkedin.com/company/argaam-fz-llc"
+                        target="_blank"
+                      >
+                        <Image
+                          src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/44cae9a3-eba9-48b9-911b-705f7777cd0e.png"
+                          width={30}
+                          height={30}
+                          alt="argaam linked in"
+                        />
+                      </Link>
+                    </div>
+                    <div className="download mt-4">
+                      <span
+                        className="text-capitalize"
+                        style={{ fontSize: "13px", fontWeight: "600" }}
+                      >
+                        download our app
+                      </span>
+                      <div className=" d-flex justify-content-center align-items-center gap-3 mt-2">
+                        <Link
+                          href="https://apps.apple.com/us/app/argaam-%D8%A3%D8%B1%D9%82%D8%A7%D9%85/id412588115"
+                          target="_blank"
                         >
-                          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                          <g
-                            id="SVGRepo_tracerCarrier"
-                            stroke="#ffffff"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="0.48"
-                          >
-                            <path
-                              d="M7.05025 1.53553C8.03344 0.552348 9.36692 0 10.7574 0C13.6528 0 16 2.34721 16 5.24264C16 6.63308 15.4477 7.96656 14.4645 8.94975L12.4142 11L11 9.58579L13.0503 7.53553C13.6584 6.92742 14 6.10264 14 5.24264C14 3.45178 12.5482 2 10.7574 2C9.89736 2 9.07258 2.34163 8.46447 2.94975L6.41421 5L5 3.58579L7.05025 1.53553Z"
-                              fill="#000000"
-                            ></path>
-                            <path
-                              d="M7.53553 13.0503L9.58579 11L11 12.4142L8.94975 14.4645C7.96656 15.4477 6.63308 16 5.24264 16C2.34721 16 0 13.6528 0 10.7574C0 9.36693 0.552347 8.03344 1.53553 7.05025L3.58579 5L5 6.41421L2.94975 8.46447C2.34163 9.07258 2 9.89736 2 10.7574C2 12.5482 3.45178 14 5.24264 14C6.10264 14 6.92742 13.6584 7.53553 13.0503Z"
-                              fill="#000000"
-                            ></path>
-                            <path
-                              d="M5.70711 11.7071L11.7071 5.70711L10.2929 4.29289L4.29289 10.2929L5.70711 11.7071Z"
-                              fill="#000000"
-                            ></path>
-                          </g>
-                          <g id="SVGRepo_iconCarrier">
-                            <path
-                              d="M7.05025 1.53553C8.03344 0.552348 9.36692 0 10.7574 0C13.6528 0 16 2.34721 16 5.24264C16 6.63308 15.4477 7.96656 14.4645 8.94975L12.4142 11L11 9.58579L13.0503 7.53553C13.6584 6.92742 14 6.10264 14 5.24264C14 3.45178 12.5482 2 10.7574 2C9.89736 2 9.07258 2.34163 8.46447 2.94975L6.41421 5L5 3.58579L7.05025 1.53553Z"
-                              fill="#000000"
-                            ></path>
-                            <path
-                              d="M7.53553 13.0503L9.58579 11L11 12.4142L8.94975 14.4645C7.96656 15.4477 6.63308 16 5.24264 16C2.34721 16 0 13.6528 0 10.7574C0 9.36693 0.552347 8.03344 1.53553 7.05025L3.58579 5L5 6.41421L2.94975 8.46447C2.34163 9.07258 2 9.89736 2 10.7574C2 12.5482 3.45178 14 5.24264 14C6.10264 14 6.92742 13.6584 7.53553 13.0503Z"
-                              fill="#000000"
-                            ></path>
-                            <path
-                              d="M5.70711 11.7071L11.7071 5.70711L10.2929 4.29289L4.29289 10.2929L5.70711 11.7071Z"
-                              fill="#000000"
-                            ></path>
-                          </g>
-                        </svg>
-                      </li>
-                    </ul>
+                          <Image
+                            src="https://image.email.argaam.com/lib/fe3811737364047f751675/m/1/69d34561-2586-40fd-a9d9-102719246b8d.png"
+                            width={140}
+                            height={40}
+                            alt="argaam apple store"
+                          />
+                        </Link>
+
+                        <Link
+                          href="https://play.google.com/store/apps/details?id=com.argaam"
+                          target="_blank"
+                        >
+                          <Image
+                            src="https://image.email.argaam.com/lib/fe3811737364047f751675/m/1/7adcd2cf-5d3b-4b04-9f9e-483bbd395b94.png"
+                            width={140}
+                            height={40}
+                            alt="argaam google play"
+                          />
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                  <Link
-                    href="https://www.argaam.com/en/newsletters"
-                    target="_blank"
-                    className="text-capitalize"
-                    style={{ color: "var(--links-color)" }}
-                  >
-                    subscribe
-                  </Link>
+                  <p className="mt-2 text-center" style={{ fontSize: "14px" }}>
+                    Argaam.com Copyright © 2025, Argaam Investment, All Rights
+                    Reserved
+                  </p>
                 </div>
-              </div>
-              <div
-                ref={articleCardRef}
-                dangerouslySetInnerHTML={{
-                  __html: isArabic
-                    ? singleArticleData?.article_data_ar
-                    : singleArticleData?.article_data_en,
-                }}
-              />
-            </article>
+              )}
+            </>
           )}
         </>
       )}

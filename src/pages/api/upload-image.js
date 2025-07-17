@@ -36,11 +36,9 @@ export default async function handler(req, res) {
         .status(500)
         .json({ error: "Upload failed", message: uploadError.message });
     }
-
     const { data: publicUrlData } = supabase.storage
       .from(process.env.SUPABASE_BUCKET)
       .getPublicUrl(fileName);
-
     return res.status(200).json({ link: publicUrlData.publicUrl });
   } catch (err) {
     console.error("Upload error:", err);

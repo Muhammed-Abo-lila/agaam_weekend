@@ -4,7 +4,7 @@
   --font-size-base: 1rem;
   --identity-color: #ee7b0b;
   --background-opacity: rgba(0, 0, 0, 0.7);
-  --bg_color: #FAF7F3;
+  --bg_color: #faf7f3;
   --white-color: #fff;
   --black-color: #000;
   --links-color: #000;
@@ -200,13 +200,15 @@ body .default-styles-2 .fr-placeholder {
   color: var(--identity-color);
   border: 1px solid var(--identity-color);
 }
+.border-dashed {
+  border-bottom: 1px dashed var(--black-color);
+}
 /* end custom button comp style */
 
-.logoAr .argaam-main-logo{
-  max-width:200px !important;
+.logoAr .argaam-main-logo {
+  max-width: 200px !important;
   height: auto !important;
 }
-
 
 /* 
 bootstrap break points
