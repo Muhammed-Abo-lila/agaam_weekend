@@ -231,92 +231,99 @@ const SingleArticle = ({ articleID, t, lang }) => {
                   }}
                 />
               </article>
-              {articlesData && articlesData?.length > 0 && (
-                <div className="single-article-footer">
-                  <h4 className="border-dashed text-capitalize py-3 fs-5">
-                    {t.more_this_week}
-                  </h4>
-                  {articlesData?.map((article, idx) => (
-                    <ArticleFooterCard
-                      key={idx}
-                      isArabic={isArabic}
-                      t={t}
-                      article={article}
-                    />
-                  ))}
-                  <div className="links text-center py-3 border-dashed">
-                    <div className="social d-flex justify-content-center align-items-center gap-4">
-                      <Link href="https://x.com/ArgaamPlus" target="_blank">
-                        <Image
-                          src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/c9c9fb8c-6cf8-4758-9cd8-0eb9ecef280d.png"
-                          width={30}
-                          height={30}
-                          alt="argaam x"
+              <div className="single-article-footer">
+                {articlesData && articlesData?.length > 1 && (
+                  <>
+                    <h4 className="border-dashed text-capitalize py-3 fs-5">
+                      {t.more_this_week}
+                    </h4>
+                    {articlesData
+                      ?.filter(
+                        (article) => article?.id !== singleArticleData?.id
+                      )
+                      .slice(0, 2)
+                      ?.map((article, idx) => (
+                        <ArticleFooterCard
+                          key={idx}
+                          isArabic={isArabic}
+                          t={t}
+                          article={article}
                         />
-                      </Link>
+                      ))}
+                  </>
+                )}
+                <div className="links text-center py-3 border-dashed">
+                  <div className="social d-flex justify-content-center align-items-center gap-4">
+                    <Link href="https://x.com/ArgaamPlus" target="_blank">
+                      <Image
+                        src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/c9c9fb8c-6cf8-4758-9cd8-0eb9ecef280d.png"
+                        width={30}
+                        height={30}
+                        alt="argaam x"
+                      />
+                    </Link>
+                    <Link
+                      href="https://www.facebook.com/argaamplus/"
+                      target="_blank"
+                    >
+                      <Image
+                        src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/24b84e22-8d38-4d6c-98db-80812ca4de5f.png"
+                        width={30}
+                        height={30}
+                        alt="argaam facebook"
+                      />
+                    </Link>
+                    <Link
+                      href="https://www.linkedin.com/company/argaam-fz-llc"
+                      target="_blank"
+                    >
+                      <Image
+                        src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/44cae9a3-eba9-48b9-911b-705f7777cd0e.png"
+                        width={30}
+                        height={30}
+                        alt="argaam linked in"
+                      />
+                    </Link>
+                  </div>
+                  <div className="download mt-4">
+                    <span
+                      className="text-capitalize"
+                      style={{ fontSize: "13px", fontWeight: "600" }}
+                    >
+                      download our app
+                    </span>
+                    <div className=" d-flex justify-content-center align-items-center gap-3 mt-2">
                       <Link
-                        href="https://www.facebook.com/argaamplus/"
+                        href="https://apps.apple.com/us/app/argaam-%D8%A3%D8%B1%D9%82%D8%A7%D9%85/id412588115"
                         target="_blank"
                       >
                         <Image
-                          src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/24b84e22-8d38-4d6c-98db-80812ca4de5f.png"
-                          width={30}
-                          height={30}
-                          alt="argaam facebook"
+                          src="https://image.email.argaam.com/lib/fe3811737364047f751675/m/1/69d34561-2586-40fd-a9d9-102719246b8d.png"
+                          width={140}
+                          height={40}
+                          alt="argaam apple store"
                         />
                       </Link>
-                      <Link
-                        href="https://www.linkedin.com/company/argaam-fz-llc"
-                        target="_blank"
-                      >
-                        <Image
-                          src="https://image.s4.exct.net/lib/fe911573736c007d7d/m/2/44cae9a3-eba9-48b9-911b-705f7777cd0e.png"
-                          width={30}
-                          height={30}
-                          alt="argaam linked in"
-                        />
-                      </Link>
-                    </div>
-                    <div className="download mt-4">
-                      <span
-                        className="text-capitalize"
-                        style={{ fontSize: "13px", fontWeight: "600" }}
-                      >
-                        download our app
-                      </span>
-                      <div className=" d-flex justify-content-center align-items-center gap-3 mt-2">
-                        <Link
-                          href="https://apps.apple.com/us/app/argaam-%D8%A3%D8%B1%D9%82%D8%A7%D9%85/id412588115"
-                          target="_blank"
-                        >
-                          <Image
-                            src="https://image.email.argaam.com/lib/fe3811737364047f751675/m/1/69d34561-2586-40fd-a9d9-102719246b8d.png"
-                            width={140}
-                            height={40}
-                            alt="argaam apple store"
-                          />
-                        </Link>
 
-                        <Link
-                          href="https://play.google.com/store/apps/details?id=com.argaam"
-                          target="_blank"
-                        >
-                          <Image
-                            src="https://image.email.argaam.com/lib/fe3811737364047f751675/m/1/7adcd2cf-5d3b-4b04-9f9e-483bbd395b94.png"
-                            width={140}
-                            height={40}
-                            alt="argaam google play"
-                          />
-                        </Link>
-                      </div>
+                      <Link
+                        href="https://play.google.com/store/apps/details?id=com.argaam"
+                        target="_blank"
+                      >
+                        <Image
+                          src="https://image.email.argaam.com/lib/fe3811737364047f751675/m/1/7adcd2cf-5d3b-4b04-9f9e-483bbd395b94.png"
+                          width={140}
+                          height={40}
+                          alt="argaam google play"
+                        />
+                      </Link>
                     </div>
                   </div>
-                  <p className="mt-2 text-center" style={{ fontSize: "14px" }}>
-                    Argaam.com Copyright © 2025, Argaam Investment, All Rights
-                    Reserved
-                  </p>
                 </div>
-              )}
+                <p className="mt-2 text-center" style={{ fontSize: "14px" }}>
+                  Argaam.com Copyright © 2025, Argaam Investment, All Rights
+                  Reserved
+                </p>
+              </div>
             </>
           )}
         </>
